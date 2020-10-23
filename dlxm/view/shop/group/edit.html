@@ -1,0 +1,179 @@
+<form id="edit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">商户名称:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input  class="form-control" readonly type="text" value="{$row.merchant.name}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Name')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-name" data-rule="required" class="form-control" name="row[name]" type="text" value="{$row.name}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Product_id')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <!--<input id="c-product_id" data-rule="required" data-source="shop/product/index" class="form-control selectpage" name="row[product_id]" type="text" value="{$row.product_id}">-->
+            <input id="c-product_name" data-rule="required" class="form-control" type="text" disabled="disabled" value="{$row.product.name}">
+            <input id="c-product_id" data-rule="required" class="form-control" name="row[product_id]" type="hidden" value="{$row.product_id}">
+        </div>
+    </div>
+
+    <input id="c-weight"  type="hidden">
+    <input id="c-cost_price"  type="hidden">
+    <input id="c-line_price"  type="hidden">
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Inventory')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-inventory"  step="1" class="form-control" name="row[inventory]" value="{$row.inventory}" {eq name="row.has_prop" value="1" }disabled{/eq} type="number">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Price')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-price" data-rule="range(0.01~);required" class="form-control" name="row[price]" value="{$row.price}" type="number">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Supply_price')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-supply_price" data-rule="required;range(0~)" class="form-control" step="0.01" name="row[supply_price]" value="{$row.supply_price}" type="number">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">产品属性:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input  name="init_has_prop" type="hidden" value="{$row.has_prop}">
+            <input  id="c-has_prop" name="row[has_prop]" type="hidden" value="{$row.has_prop}">
+            <a href="javascript:;" onclick="prop_swc(this),prop_swc2(this)" data-toggle="switcher" class="btn-switcher" data-input-id="c-has_prop" data-yes="1" data-no="0" >
+                <i class="fa fa-toggle-on text-success {eq name="$row.has_prop" value="0"}fa-flip-horizontal text-gray{/eq} fa-2x"></i>
+            </a>
+
+            <!--属性设置start-->
+            <div class="prop {neq name='$row.has_prop' value='1'}hidden{/neq}">
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">选择属性</h3>
+                    </div>
+                    <div class="panel-body">
+                        {foreach $prop_list as $lv1}
+                        <input type="hidden" class="allPid" value="{$lv1.id}">
+                        <ul class="list-inline">
+                            <li> <h4 class="text-info">{$lv1.name}:</h4></li>
+                            {foreach $lv1['propval'] as $lv2}
+                            <li><div class="checkbox"><label><input type="checkbox" {in name="lv2.id" value="$prop_ids"}checked{/in} class="allval pid_{$lv2.pid}" onchange="check_propval(this)"  data-info='{:json_encode($lv2)}'>{$lv2.name}</label></div></li>
+                            {/foreach}
+                        </ul>
+                        {/foreach}
+                    </div>
+                </div>
+
+                <div class="panel panel-info propval {neq name='$row.has_prop' value='1'}hidden{/neq}">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">设置属性</h3>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table text-center">
+                            <thead>
+                            <tr>
+                                <th style="width: 20%">属性名称</th>
+                                <th>划线价</th>
+                                <th>售卖价</th>
+                                <th>供货价</th>
+                                <th>成本价</th>
+                                <th>重量（kg）</th>
+                                <th>库存</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {foreach $product_prop_list as $item}
+                            <tr>
+                                <td>{$item.names}<input type="hidden" name="props[]" value="{$item.props}"></td>
+                                <td><input type="number" class="form-control" name="line_price[]" value="{$item.line_price}"></td>
+                                <td><input type="number" class="form-control" name="price[]" value="{$item.price}"></td>
+                                <td><input type="number" class="form-control" name="supply_price[]" value="{$item.supply_price}"></td>
+                                <td><input type="number" class="form-control" name="cost_price[]" value="{$item.cost_price}"></td>
+                                <td><input type="number" class="form-control" name="weight[]" value="{$item.weight}"></td>
+                                <td><input type="number" class="form-control" name="inventory[]" value="{$item.inventory}"></td>
+                            </tr>
+                            {/foreach}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <!--属性设置end-->
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Start_time')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-start_time" data-rule="required" class="form-control datetimepicker" data-date-format="YYYY-MM-DD HH:mm:ss" data-use-current="true" name="row[start_time]" type="text" value="{:$row.start_time?datetime($row.start_time):''}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('End_time')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-end_time" data-rule="required" class="form-control datetimepicker" data-date-format="YYYY-MM-DD HH:mm:ss" data-use-current="true" name="row[end_time]" type="text" value="{:$row.end_time?datetime($row.end_time):''}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Group_size')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-group_size" data-rule="range(2~);required" class="form-control" name="row[group_size]" type="number" value="{$row.group_size}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Auto_switch')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <label for="row[auto_switch]-1"><input id="row[auto_switch]-1" name="row[auto_switch]" type="radio" value="1" {if $row.auto_switch == 1}checked="checked"{/if}> 开启</label>
+            <label for="row[auto_switch]-0"><input id="row[auto_switch]-0" name="row[auto_switch]" type="radio" value="0" {if $row.auto_switch == 0}checked="checked"{/if}> 关闭</label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Hour')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-hour" data-rule="range(1~);required" class="form-control" name="row[hour]" type="number" value="{$row.hour}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Weigh')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-weigh" class="form-control" name="row[weigh]" type="number" value="{$row.weigh}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Status')}:</label>
+        <div class="col-xs-12 col-sm-8">
+
+            <div class="radio">
+                {foreach name="statusList" item="vo"}
+                <label for="row[status]-{$key}"><input id="row[status]-{$key}" name="row[status]" type="radio" value="{$key}" {in name="key" value="$row.status"}checked{/in} /> {$vo}</label>
+                {/foreach}
+            </div>
+
+        </div>
+    </div>
+
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>
+
+{include file="../application/admin/view/shop/group/check_propval.html" /}

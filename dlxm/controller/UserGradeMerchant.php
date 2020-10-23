@@ -1,0 +1,128 @@
+<?php
+
+namespace app\admin\controller;
+
+use app\common\controller\Backend;
+use think\Db;
+use think\Exception;
+use think\exception\PDOException;
+use think\exception\ValidateException;
+
+/**
+ * 推广员关联商户
+ *
+ * @icon fa fa-circle-o
+ */
+class UserGradeMerchant extends Backend
+{
+    use \app\admin\library\traits\BackendMch;
+    /**
+     * UserGradeMerchant模型对象
+     * @var \app\admin\model\UserGradeMerchant
+     */
+    protected $model = null;
+    protected $mch_id = 'merchant_id';
+
+    public function _initialize()
+    {
+        parent::_initialize();
+        $this->model = new \app\admin\model\UserGradeMerchant;
+        $this->view->assign("statusList", $this->model->getStatusList());
+    }
+
+    /**
+     * 查看
+     */
+    public function index()
+    {
+        //设置过滤方法
+        $this->request->filter(['strip_tags']);
+        if ($this->request->isAjax()) {
+            //如果发送的来源是Selectpage，则转发到Selectpage
+            if ($this->request->request('keyField')) {
+                return $this->selectpage();
+            }
+            list($where, $sort, $order, $offset, $limit) = $this->buildparams();
+            if($this->auth->id == 1){
+                $where = '1=1';
+            }
+            $total = $this->model
+                ->with(['merchant','user'])
+                ->where($where)
+                ->order($sort, $order)
+                ->count();
+
+            $list = $this->model
+                ->with(['merchant','user'])
+                ->where($where)
+                ->order($sort, $order)
+                ->limit($offset, $limit)
+                ->select();
+
+            $list = collection($list)->toArray();
+            $result = array("total" => $total, "rows" => $list);
+
+            return json($result);
+        }
+        return $this->view->fetch();
+    }
+
+
+    /**
+     * 编辑
+     */
+    public function edit($ids = null)
+    {
+        $row = $this->model->with('merchant')->where('id',$ids)->find();
+        if (!$row) {
+            $this->error(__('No Results were found'));
+        }
+        $adminIds = $this->getDataLimitAdminIds();
+        if (is_array($adminIds)) {
+            if (!in_array($row[$this->dataLimitField], $adminIds)) {
+                $this->error(__('You have no permission'));
+            }
+        }
+        if ($this->request->isPost()) {
+            if($row->status != 1){
+                $this->success();
+            }
+            $params = $this->request->post("row/a");
+            if ($params) {
+                $params = $this->preExcludeFields($params);
+                $result = false;
+                Db::startTrans();
+                try {
+                    //是否采用模型验证
+                    if ($this->modelValidate) {
+                        $name = str_replace("\\model\\", "\\validate\\", get_class($this->model));
+                        $validate = is_bool($this->modelValidate) ? ($this->modelSceneValidate ? $name . '.edit' : $name) : $this->modelValidate;
+                        $row->validate($validate);
+                    }
+                    $result = $row->allowField(true)->save($params) !== false;
+                    Db::commit();
+                } catch (ValidateException $e) {
+                    Db::rollback();
+                    $this->error($e->getMessage());
+                } catch (PDOException $e) {
+                    Db::rollback();
+                    $this->error($e->getMessage());
+                } catch (Exception $e) {
+                    Db::rollback();
+                    $this->error($e->getMessage());
+                }
+                if ($result) {
+                    $this->success();
+                } else {
+                    $this->error();
+                }
+            }
+            $this->error(__('Parameter %s can not be empty', ''));
+        }
+        $this->view->assign("row", $row);
+        return $this->view->fetch();
+    }
+
+    
+
+}

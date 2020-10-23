@@ -1,0 +1,193 @@
+<form id="edit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('User_id')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-user_id" data-rule="required" data-field="nickname" data-source="member/user/index" data-field="nickname" class="form-control selectpage" name="row[user_id]" type="text" value="{$row.user_id|htmlentities}" disabled>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Mechanism_id')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-mechanism_id" data-rule="required" data-source="power/mechanism/index" class="form-control selectpage" name="row[mechanism_id]" type="text" value="{$row.mechanism_id|htmlentities}" disabled>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Product_id')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-product_id" data-rule="required" data-source="power/product/index" class="form-control selectpage" name="row[product_id]" type="text" value="{$row.product_id|htmlentities}" disabled>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Customer_id')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-customer_id" data-rule="required" data-source="power/customer/index" class="form-control selectpage" name="row[customer_id]" type="text" value="{$row.customer_id|htmlentities}" disabled>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Order')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-order" data-rule="required" class="form-control" name="row[order]" type="text" value="{$row.order|htmlentities}" disabled>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Order_city')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class='control-relative'><input id="c-order_city" class="form-control" data-toggle="city-picker" name="row[order_city]" type="text" value="{$row.order_city|htmlentities}" disabled></div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Ledger_image')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input id="c-ledger_image" class="form-control" size="50" name="row[ledger_image]" type="text" value="{$row.ledger_image|htmlentities}" disabled>
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="plupload-ledger_image" class="btn btn-danger plupload" data-input-id="c-ledger_image" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false" data-preview-id="p-ledger_image"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+<!--                    <span><button type="button" id="fachoose-ledger_image" class="btn btn-primary fachoose" data-input-id="c-ledger_image" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>-->
+                </div>
+                <span class="msg-box n-right" for="c-ledger_image"></span>
+            </div>
+            <ul class="row list-inline plupload-preview" id="p-ledger_image"></ul>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Device_name')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-device_name" data-rule="required" class="form-control" name="row[device_name]" type="text" value="{$row.device_name|htmlentities}" disabled>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Device_number')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-device_number" data-rule="required" class="form-control" name="row[device_number]" type="text" value="{$row.device_number|htmlentities}" disabled>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Specification')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-specification" class="form-control" name="row[specification]" type="text" value="{$row.specification|htmlentities}" disabled>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Outline_size')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-outline_size" class="form-control" name="row[outline_size]" type="number" value="{$row.outline_size|htmlentities}" disabled>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Factory_time')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-factory_time" class="form-control datetimepicker" data-date-format="YYYY-MM-DD HH:mm:ss" data-use-current="true" name="row[factory_time]" type="text" value="{:$row.factory_time?datetime($row.factory_time):''}" disabled>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Commission_time')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-commission_time" class="form-control datetimepicker" data-date-format="YYYY-MM-DD HH:mm:ss" data-use-current="true" name="row[commission_time]" type="text" value="{:$row.commission_time?datetime($row.commission_time):''}" disabled>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Factory_number')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-factory_number" class="form-control" name="row[factory_number]" type="text" value="{$row.factory_number|htmlentities}" disabled>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Supplier')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-supplier" class="form-control" name="row[supplier]" type="text" value="{$row.supplier|htmlentities}" disabled>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Device_contacts')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-device_contacts" class="form-control" name="row[device_contacts]" type="text" value="{$row.device_contacts|htmlentities}" disabled>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Device_phone')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-device_phone" class="form-control" name="row[device_phone]" type="text" value="{$row.device_phone|htmlentities}" disabled>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Install_address')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-install_address" class="form-control" name="row[install_address]" type="text" value="{$row.install_address|htmlentities}" disabled>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Device_use_years')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-device_use_years" class="form-control" step="0.1" name="row[device_use_years]" type="number" value="{$row.device_use_years|htmlentities}" disabled>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Subordinate_departments')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-subordinate_departments" class="form-control" name="row[subordinate_departments]" type="text" value="{$row.subordinate_departments|htmlentities}" disabled>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Person')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-person" class="form-control" name="row[person]" type="text" value="{$row.person|htmlentities}" disabled>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Maintenance_time')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-maintenance_time" class="form-control datetimepicker" data-date-format="YYYY-MM-DD HH:mm:ss" data-use-current="true" name="row[maintenance_time]" type="text" value="{:$row.maintenance_time?datetime($row.maintenance_time):''}" disabled>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Performance_parameter')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-performance-parameter" data-rule="required" data-source="ledger/paramete/index" class="form-control selectpage" name="row[performance_parameter]" data-multiple="true" type="text" value="{$row.performance_parameter}" disabled>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Warning_identification')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-warning_identification" class="form-control" name="row[warning_identification]" type="text" value="{$row.warning_identification|htmlentities}" disabled>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Warning_product_id')}:</label>
+        <div class="col-xs-12 col-sm-8">
+<!--            <input id="c-warning_product_id" data-rule="" data-field="warning_product_name" data-source="ledger/warning/index" class="form-control selectpage" name="row[warning_product_id]" data-multiple="true" type="text" value="{$row.warning_product_id}" disabled>-->
+            <input id="c-warning_product_id" data-field="warning_product_name" data-rule="" data-source="ledger/warning/index" class="form-control selectpage" name="row[warning_product_id]" data-multiple="true" type="text" value="{$row.warning_product_id}" disabled>
+<!--            <a href="/admin/ledger/warning/" style="margin-top: 10px;" class="btn btn-xs btn-success btn-dialog" data-toggle="tooltip" title="" data-table-id="table" data-field-index="6" data-row-index="0" data-button-index="1" data-original-title="添加警报">添加警报</a>-->
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('File')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input id="c-File" data-rule="" class="form-control" size="50" name="row[file]" type="text" value="{$row.file|htmlentities}" disabled>
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="plupload-File" class="btn btn-danger plupload" data-input-id="c-File"  data-multiple="true" data-preview-id="p-File"><i class="fa fa-upload"></i> 上传</button></span>
+                    <!--                    <span><button type="button" id="fachoose-avatar" class="btn btn-primary fachoose" data-input-id="c-avatar" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> 选择</button></span>-->
+                </div>
+                <span class="msg-box n-right" for="c-File"></span>
+            </div>
+            <ul class="row list-inline plupload-preview" id="p-File"></ul>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Ledger_qrcode')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <img src="{$row.ledger_qrcode|htmlentities}">
+            <!--<input id="c-ledger_qrcode" class="form-control" name="row[ledger_qrcode]" type="text" value="{$row.ledger_qrcode|htmlentities}">-->
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Create_time')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-create_time" data-rule="required" class="form-control datetimepicker" data-date-format="YYYY-MM-DD HH:mm:ss" data-use-current="true" name="row[create_time]" type="text" value="{:$row.create_time?datetime($row.create_time):''}" disabled>
+        </div>
+    </div>
+</form>

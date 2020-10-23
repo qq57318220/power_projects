@@ -1,0 +1,225 @@
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Merchant_id')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-merchant_id" data-rule="required" data-source="/admin/merchant/getMchList/type/0" onchange="ck_mch_id()" class="form-control selectpage" name="row[merchant_id]" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Name')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-name" data-rule="required" class="form-control" name="row[name]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">列表图片:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input id="c-list_image" data-rule="" class="form-control" size="50" name="row[list_image]" type="text" value="">
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="plupload-list_image" class="btn btn-danger plupload" data-input-id="c-list_image" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false" data-preview-id="p-list_image"><i class="fa fa-upload"></i> 上传</button></span>
+                    <span><button type="button" id="fachoose-list_image" class="btn btn-primary fachoose" data-input-id="c-list_image" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> 选择</button></span>
+                </div>
+                <span class="msg-box n-right" for="c-list_image"></span>
+            </div>
+            <ul class="row list-inline plupload-preview" id="p-list_image"></ul>
+            <!--<input id="c-list_image" data-rule="required" class="form-control" name="row[list_image]" type="text">-->
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">礼包介绍:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-introduce" data-rule="required" class="form-control" name="row[introduce]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Product_id')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-product_id" data-rule="required" data-source="shop/product/index" class="form-control selectpage" name="row[product_id]" type="text" value="">
+        </div>
+    </div>
+    <!--关联属性初始数据-->
+    <input id="c-weight"  type="hidden">
+    <input id="c-cost_price"  type="hidden">
+    <input id="c-line_price"  type="hidden">
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Inventory')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-inventory"  step="1" class="form-control" name="row[inventory]" type="number">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Price')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-price" data-rule="range(0.01~);required" class="form-control" name="row[price]" type="number">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Supply_price')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-supply_price" data-rule="required;range(0~)" class="form-control" step="0.01" name="row[supply_price]" type="number">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">产品属性:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input  id="c-has_prop" name="row[has_prop]" type="hidden" value="0">
+            <a href="javascript:;" onclick="prop_swc(this),prop_swc2(this)" data-toggle="switcher" class="btn-switcher" data-input-id="c-has_prop" data-yes="1" data-no="0" >
+                <i class="fa fa-toggle-on text-success fa-flip-horizontal text-gray fa-2x"></i>
+            </a>
+
+            <!--属性设置start-->
+            <div class="prop hidden">
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">选择属性</h3>
+                    </div>
+
+                    <div class="panel-body" >
+                        <template v-for="item in show_prop_list" :key="item.id">
+                            <input type="hidden" class="allPid" :value="item.id">
+                            <ul class="list-inline">
+                                <li> <h4 class="text-info">{{item.name}}:</h4></li>
+                                <li v-for="v in item.propval" :key="item.id+'-'+v.id">
+                                    <div class="checkbox"><label><input type="checkbox" class="allval" :class="'pid_'+v.pid" onchange="check_propval(this)"  :data-info="JSON.stringify(v)">{{v.name}}</label></div>
+                                </li>
+
+                            </ul>
+                        </template>
+                    </div>
+
+                </div>
+
+                <div class="panel panel-info propval hidden">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">设置属性</h3>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table text-center">
+                            <thead>
+                            <tr>
+                                <th style="width: 20%">属性名称</th>
+                                <th>划线价</th>
+                                <th>售卖价</th>
+                                <th>供货价</th>
+                                <th>成本价</th>
+                                <th>重量（kg）</th>
+                                <th>库存</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <!--属性设置end-->
+
+        </div>
+    </div>
+
+    <!--<div class="form-group">-->
+        <!--<label class="control-label col-xs-12 col-sm-2">{:__('Has_prop')}:</label>-->
+        <!--<div class="col-xs-12 col-sm-8">-->
+                        <!---->
+            <!--<select  id="c-has_prop" class="form-control selectpicker" name="row[has_prop]">-->
+                <!--{foreach name="hasPropList" item="vo"}-->
+                    <!--<option value="{$key}" {in name="key" value="0"}selected{/in}>{$vo}</option>-->
+                <!--{/foreach}-->
+            <!--</select>-->
+
+        <!--</div>-->
+    <!--</div>-->
+    <div class="form-group has-success">
+        <label class="control-label col-xs-12 col-sm-2">大礼包升级类型:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="checkbox">
+                <label for="grade_type1"><input id="grade_type1" name="row[grade_type]" type="checkbox"  value="true" onclick="change_grade(0)"> 会员大礼包</label>
+                <label for="grade_type2"><input id="grade_type2" name="row[grade_type]" type="checkbox" value="true" onclick="change_grade(1)"> 店铺大礼包</label>
+             </div>
+        </div>
+    </div>
+    <div class="form-group hidden" id="grade">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Grade')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-grade"  data-source="user_grade/index" data-field="name" data-primary-key="grade" class="form-control selectpage" data-params="{'custom[id]':['<>',1]}" name="row[grade]" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group hidden" id="team">
+        <label class="control-label col-xs-12 col-sm-2">店铺身份:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-team_grade"  data-source="reward/team/user_team/index" data-field="name" data-primary-key="team_grade" class="form-control selectpage" name="row[team_grade]" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Weigh')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-weigh" class="form-control" name="row[weigh]" type="number" value="0">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Status')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            
+            <div class="radio">
+            {foreach name="statusList" item="vo"}
+            <label for="row[status]-{$key}"><input id="row[status]-{$key}" name="row[status]" type="radio" value="{$key}" {in name="key" value="online"}checked{/in} /> {$vo}</label> 
+            {/foreach}
+            </div>
+
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>
+
+<script src="/assets/js/vue.min.js"></script>
+<script>
+    var prop_list = {:json_encode($prop_list)};//所有产品属性初始化
+    // console.log(prop_list);
+    var vm = new Vue({
+        el:"#add-form",
+        data:{
+            merchant_id:0,
+        },
+        computed:{
+            show_prop_list:function(){
+                if(this.merchant_id == 0){
+                    return [];
+                }
+                var items = [];
+                if(prop_list.length > 0){
+                    for(var item of prop_list){
+                        if(item.merchant_id == this.merchant_id){
+                            items.push(item);
+                        }
+                    }
+                }
+                // console.log(items);
+                return items;
+            },
+        },
+
+    });
+
+    function ck_mch_id(){
+        vm.merchant_id = $('#c-merchant_id').val();
+        // console.log(vm.merchant_id);
+        $('.propval').addClass('hidden');
+        $('.propval tbody').children().remove();
+    }
+
+</script>
+
+{include file="../application/admin/view/upbag/check_propval.html" /}

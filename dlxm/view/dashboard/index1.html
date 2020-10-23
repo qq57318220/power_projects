@@ -1,0 +1,507 @@
+<style type="text/css">
+    .sm-st {
+        background: #fff;
+        padding: 20px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        margin-bottom: 20px;
+        -webkit-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 1px 0px rgba(0, 0, 0, 0.05);
+    }
+
+    .sm-st-icon {
+        width: 60px;
+        height: 60px;
+        display: inline-block;
+        line-height: 60px;
+        text-align: center;
+        font-size: 30px;
+        background: #eee;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        float: left;
+        margin-right: 10px;
+        color: #fff;
+    }
+
+    .sm-st-info {
+        font-size: 12px;
+        padding-top: 2px;
+    }
+
+    .sm-st-info span {
+        display: block;
+        font-size: 24px;
+        font-weight: 600;
+    }
+
+    .orange {
+        background: #fa8564 !important;
+    }
+
+    .tar {
+        background: #45cf95 !important;
+    }
+
+    .sm-st .green {
+        background: #86ba41 !important;
+    }
+
+    .pink {
+        background: #AC75F0 !important;
+    }
+
+    .yellow-b {
+        background: #fdd752 !important;
+    }
+
+    .stat-elem {
+
+        background-color: #fff;
+        padding: 18px;
+        border-radius: 40px;
+
+    }
+
+    .stat-info {
+        text-align: center;
+        background-color: #fff;
+        border-radius: 5px;
+        margin-top: -5px;
+        padding: 8px;
+        -webkit-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 1px 0px rgba(0, 0, 0, 0.05);
+        font-style: italic;
+    }
+
+    .stat-icon {
+        text-align: center;
+        margin-bottom: 5px;
+    }
+
+    .st-red {
+        background-color: #F05050;
+    }
+
+    .st-green {
+        background-color: #27C24C;
+    }
+
+    .st-violet{
+        background-color: #7266ba;
+    }
+
+    .st-blue {
+        background-color: #23b7e5;
+    }
+
+    .stats .stat-icon {
+        color: #28bb9c;
+        display: inline-block;
+        font-size: 26px;
+        text-align: center;
+        vertical-align: middle;
+        width: 50px;
+        float: left;
+    }
+
+    .stat {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    .stat .value {
+        font-size: 20px;
+        line-height: 24px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-weight: 500;
+    }
+
+    .stat .name {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .stat.lg .value {
+        font-size: 26px;
+        line-height: 28px;
+    }
+
+    .stat.lg .name {
+        font-size: 16px;
+    }
+
+    .stat-col .progress {
+        height: 2px;
+    }
+
+    .stat-col .progress-bar {
+        line-height: 2px;
+        height: 2px;
+    }
+
+    .item {
+        padding: 30px 0;
+    }
+</style>
+{if preg_match('/\/admin\/|admin\.php|admin_d75KABNWt\.php/i', url())}
+{/if}
+<div class="panel panel-default panel-intro">
+    <div class="panel-body">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="one">
+                <div class="row">
+                    <div class="col-sm-2 col-md-2 col-xs-4">
+                        <div class="sm-st clearfix">
+                            <span class="sm-st-icon st-green"><i class="fa fa-cny"></i></span>
+                            <div class="sm-st-info">
+                                <span>{$top.today_trade_count}</span>
+                                今日交易额
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2 col-xs-4">
+                        <div class="sm-st clearfix">
+                            <span class="sm-st-icon st-violet"><i class="fa fa-book"></i></span>
+                            <div class="sm-st-info">
+                                <span>{$top.yesterday_trade_count}</span>
+                                昨日交易额
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2 col-xs-4">
+                        <div class="sm-st clearfix">
+                            <span class="sm-st-icon st-blue"><i class="fa fa-shopping-bag"></i></span>
+                            <div class="sm-st-info">
+                                <span>{$top.total_order}</span>
+                                {:__('Total order')}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2 col-xs-4">
+                        <div class="sm-st clearfix">
+                            <span class="sm-st-icon st-red"><i class="fa fa-users"></i></span>
+                            <div class="sm-st-info">
+                                <span>{$top.total_user}</span>
+                                总会员数
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2 col-xs-4">
+                        <div class="sm-st clearfix">
+                            <span class="sm-st-icon st-violet"><i class="fa fa-address-card"></i></span>
+                            <div class="sm-st-info">
+                                <span>{$top.total_tgy}</span>
+                                推广员数
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2 col-xs-4">
+                        <div class="sm-st clearfix">
+                            <span class="sm-st-icon st-green"><i class="fa fa-gift"></i></span>
+                            <div class="sm-st-info">
+                                <span>{$top.total_product}</span>
+                                商品总数
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {if condition="$isAdmin"}
+                <div class="input-group col-lg-3">
+                    <input id="c-merchant_id" data-rule="required"  style="width: 200px" data-source="/admin/merchant/getMchList/type/0" onchange="ck_mch_id()" class="form-control selectpage" name="row[merchant_id]" type="text" value="">
+                    <button class="btn btn-info btn-sm" style="line-height: 1.4" id="search_btns"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</button>
+                </div>
+                {else/}
+                {/if}
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="btn-group">
+                            <button class="btn btn-sm btn-success day_limit" data-day="7"> 7天</button>
+                            <button class="btn btn-sm btn-default day_limit" data-day="15"> 15天</button>
+                            <button class="btn btn-sm btn-default day_limit" data-day="30"> 30天</button>
+                        </div>
+
+                        <div class="pull-right input-group" >
+                            <input style="width: 200px" type="text" class="form-control datetimepicker input-sm" id="search_begin_time" placeholder="查询时间范围：开始时间">
+                            <input style="width: 200px" type="text" class="form-control input-sm datetimepicker" id="search_end_time" placeholder="查询时间范围：结束时间">
+                            <button class="btn btn-info btn-sm" style="line-height: 1.4" id="search_btn"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</button>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-8 col-md-8 col-lg-8">
+                                <div id="echart" style="height:200px;width:100%;"></div>
+                            </div>
+                            <div class="col-sm-4 col-md-4 col-lg-4">
+                                <div class="card sameheight-item stats">
+                                    <div class="card-block">
+                                        <div class="row row-sm stats-container">
+                                            <div class="col-xs-6 stat-col">
+                                                <div class="stat-icon"><i class="fa fa-rocket"></i></div>
+                                                <div class="stat">
+                                                    <div class="value"> {$second.right.today_user}</div>
+                                                    <div class="name"> {:__('Today user signup')}</div>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-success" style="width: 30%"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-6 stat-col">
+                                                <div class="stat-icon"><i class="fa fa-shopping-cart"></i></div>
+                                                <div class="stat">
+                                                    <div class="value" id="total_as_order"> {$second.right.total_as_order}</div>
+                                                    <div class="name"> 待退/换货订单</div>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-success" style="width: 25%"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-6 stat-col">
+                                                <div class="stat-icon"><i class="fa fa-line-chart"></i></div>
+                                                <div class="stat">
+                                                    <div class="value"> {$second.right.today_order}</div>
+                                                    <div class="name"> 今日订单</div>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-success" style="width: 25%"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-6 stat-col">
+                                                <div class="stat-icon"><i class="fa fa-users"></i></div>
+                                                <div class="stat">
+                                                    <div class="value" id="wait_deliver"> {$second.right.wait_deliver}</div>
+                                                    <div class="name"> 未发货订单</div>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-success" style="width: 25%"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-6 stat-col">
+                                                <div class="stat-icon"><i class="fa fa-list-alt"></i></div>
+                                                <div class="stat">
+                                                    <div class="value"> {$second.right.seven_new_order}</div>
+                                                    <div class="name"> 七日新增订单</div>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-success" style="width: 25%"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-6 stat-col">
+                                                <div class="stat-icon"><i class="fa fa-dollar"></i></div>
+                                                <div class="stat">
+                                                    <div class="value"> {$second.right.seven_new_user}</div>
+                                                    <div class="name"> 七日新增会员</div>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-success" style="width: 25%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-8 col-md-8 col-lg-8">
+                                <div id="user_num_echart" style="height:200px;width:100%;"></div>
+                            </div>
+                            <div class="col-sm-4 col-md-4 col-lg-4">
+                                <div id="order_echart" style="height:200px;width:100%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-8 col-md-8 col-lg-8">
+                                <div id="trade_echart" style="height:200px;width:100%;"></div>
+                            </div>
+                            <div class="col-sm-4 col-md-4 col-lg-4">
+                                <div id="identity_echart" style="height:200px;width:100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top:15px;">
+                    {foreach($third as $k=>$v)}
+                    <div class="col-xs-6 col-md-3">
+                        <div class="panel {$color[$k%4]}">
+                            <div class="panel-body">
+                                <div class="ibox-title">
+                                    <span class="label label-info pull-right">{:__('Real time')}</span>
+                                    <h5><i class="fa fa-map-marker"></i> {$v.city}</h5>
+                                </div>
+                                <div class="ibox-content">
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h1 class="no-margins">{$v.count}</h1>
+                                            <div class="font-bold"><i class="fa fa-shopping-bag"></i>
+                                                <small>订单数</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h1 class="no-margins">{$v.pay_count}</h1>
+                                            <div class="font-bold"><i class="fa fa-cny"></i>
+                                                <small>已付款</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {/foreach}
+                </div>
+
+                <style>
+                    .cygn > div{
+                        display: flex;flex-direction: column;
+                    }
+
+                    .cygn > div > div{
+                        border-radius:50%;
+                    }
+
+                    .cygn p{
+                        margin-top: 10px;
+                    }
+                </style>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        常用功能
+                    </div>
+                    <div class="panel-body">
+                        <div class="container-fluid">
+                            <div class="row-fluid cygn">
+                                <div class="col-md-1 col-lg-1">
+                                    <div class="sm-st-icon st-blue">
+                                        <i class="fa fa-tag"></i>
+                                    </div>
+                                    <p class="dl-horizontal">
+                                        &nbsp;<a href="/admin/shop/product?ref=addtabs" class="addtabsit">产品管理</a>
+                                    </p>
+                                </div>
+                                <div class="col-md-1 col-lg-1">
+                                    <div class="sm-st-icon st-violet">
+                                        <i class="fa fa-bars fa-fw"></i>
+                                    </div>
+                                    <p class="dl-horizontal">
+                                        <a href="/admin/shop_order?ref=addtabs" class="addtabsit">订单管理</a>
+                                    </p>
+                                </div>
+                                <div class="col-md-1 col-lg-1">
+                                    <div class="sm-st-icon st-green">
+                                        <i class="fa fa-group fa-fw"></i>
+                                    </div>
+                                    <p class="dl-horizontal">
+                                        <a href="/admin/shop/group?ref=addtabs" class="addtabsit">&nbsp;拼团活动</a>
+                                    </p>
+                                </div>
+                                <div class="col-md-1 col-lg-1">
+                                    <div class="sm-st-icon st-red">
+                                        <i class="fa fa-bars fa-fw"></i>
+                                    </div>
+                                    <p class="dl-horizontal">
+                                        <a href="/admin/shop/tuan_order?ref=addtabs" class="addtabsit">&nbsp;拼团订单</a>
+                                    </p>
+                                </div>
+                                <div class="col-md-1 col-lg-1">
+                                    <div class="sm-st-icon st-blue">
+                                        <i class="fa fa-suitcase fa-fw"></i>
+                                    </div>
+                                    <p class="dl-horizontal">
+                                        <a href="/admin/market/coupon?ref=addtabs" class="addtabsit">&nbsp;&nbsp;&nbsp;优惠券</a>
+                                    </p>
+                                </div>
+                                <div class="col-md-1 col-lg-1">
+                                    <div class="sm-st-icon st-violet">
+                                        <i class="fa fa-user fa-fw"></i>
+                                    </div>
+                                    <p class="dl-horizontal">
+                                        <a href="/admin/member/user?ref=addtabs" class="addtabsit">&nbsp;会员管理</a>
+                                    </p>
+                                </div>
+                                <div class="col-md-1 col-lg-1">
+                                    <div class="sm-st-icon st-green">
+                                        <i class="fa fa-list fa-fw"></i>
+                                    </div>
+                                    <p class="dl-horizontal">
+                                        <a href="/admin/category?ref=addtabs" class="addtabsit">&nbsp;分类管理</a>
+                                    </p>
+                                </div>
+                                <div class="col-md-1 col-lg-1">
+                                    <div class="sm-st-icon st-red">
+                                        <i class="fa fa-ils fa-fw"></i>
+                                    </div>
+                                    <p class="dl-horizontal">
+                                        <a href="/admin/after_sale?ref=addtabs" class="addtabsit">&nbsp;售后管理</a>
+                                    </p>
+                                </div>
+                                <div class="col-md-1 col-lg-1">
+                                    <div class="sm-st-icon st-blue">
+                                        <i class="fa fa-product-hunt fa-fw"></i>
+                                    </div>
+                                    <p class="dl-horizontal">
+                                        <a href="/admin/shop/prop?ref=addtabs" class="addtabsit">&nbsp;产品属性</a>
+                                    </p>
+                                </div>
+                                <div class="col-md-1 col-lg-1">
+                                    <div class="sm-st-icon st-violet">
+                                        <i class="fa fa-yen fa-fw"></i>
+                                    </div>
+                                    <p class="dl-horizontal">
+                                        <a href="/admin/member/cash?ref=addtabs" class="addtabsit">&nbsp;提现管理</a>
+                                    </p>
+                                </div>
+                                <div class="col-md-1 col-lg-1">
+                                    <div class="sm-st-icon st-green">
+                                        <i class="fa fa-certificate fa-fw"></i>
+                                    </div>
+                                    <p class="dl-horizontal">
+                                        <a href="/admin/apply_promoter?ref=addtabs" class="addtabsit">推广员审核</a>
+                                    </p>
+                                </div>
+                                <div class="col-md-1 col-lg-1">
+                                    <div class="sm-st-icon st-red">
+                                        <i class="fa fa-cog fa-fw"></i>
+                                    </div>
+                                    <p class="dl-horizontal">
+                                        <a href="/admin/general/config?ref=addtabs" class="addtabsit">&nbsp;系统设置</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    let second_left = {
+        column: {:json_encode(array_keys($second['left']['paylist']))},
+        paydata: {:json_encode(array_values($second['left']['paylist']))},
+        createdata: {:json_encode(array_values($second['left']['createlist']))},
+    };
+
+    let four_left = {:json_encode($four['left'])};
+
+    let four_right_up = {
+        column : {:json_encode(array_keys($four['right_up']))},
+        data : {:json_encode(array_values($four['right_up']))}
+    };
+
+    let four_right_down = {
+        column : {:json_encode(array_keys($four['right_down']))},
+        data : {:json_encode(array_values($four['right_down']))}
+    };
+
+    let order_left = {:json_encode($order_left)};
+</script>

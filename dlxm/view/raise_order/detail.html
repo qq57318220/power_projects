@@ -1,0 +1,49 @@
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>众筹订单信息</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr><td>众筹订单id：{$row.id}</td><td>众筹状态：{$row.status_text}</td></tr>
+        <tr><td>众筹发起用户:{$row.user.nickname}</td><td>头像:<img src="{$row.user.avatar}" alt="" style="width: 30px;height: 30px;"></td></tr>
+        <tr><td>目标金额：{$row.total}</td><td>最晚众筹时间：{:datetime($row.last_time,"Y-m-d H:i:s")}</td></tr>
+        <tr><td>已筹得金额：{$row.pay_total}</td><td>已支持人数：{$row.pay_num}</td></tr>
+        <tr><td>众筹宣言：{$row.flag}</td><td>创建时间：{:datetime($row.createtime,"Y-m-d H:i:s")}</td></tr>
+    </tbody>
+</table>
+{empty name="list"}
+    <h3>暂无好友众筹记录</h3>
+{else/}
+<table class="table table-striped">
+    <h3>好友众筹记录</h3>
+    <thead>
+    <tr>
+        <th>用户id</th>
+        <th>用户昵称</th>
+        <th>用户头像</th>
+        <th>支付金额</th>
+        <th>订单号</th>
+        <th>交易流水号</th>
+        <th>支付时间</th>
+        <th>支付方式</th>
+        <th>下单时间</th>
+    </tr>
+    </thead>
+    <tbody>
+        {foreach $list as $o}
+        <tr>
+            <td>{$o.user_id}</td>
+            <td>{$o.user.nickname}</td>
+            <td><img src="{$o.user.avatar}" alt="" style="width: 30px;height: 30px;"></td>
+            <td>{$o.pay_total}</td>
+            <td>{$o.out_trade_no}</td>
+            <td>{$o.transaction_id}</td>
+            <td>{:datetime($o.pay_time,"Y-m-d H:i:s")}</td>
+            <td>{$o.payment_name}</td>
+            <td>{:datetime($o.createtime,"Y-m-d H:i:s")}</td>
+        </tr>
+        {/foreach}
+    </tbody>
+</table>
+{/empty}

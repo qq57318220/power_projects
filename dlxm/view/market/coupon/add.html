@@ -1,0 +1,96 @@
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Name')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-name" class="form-control" name="row[name]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Type_list')}:</label>
+        <div class="col-xs-12 col-sm-8">
+                        
+            <select  id="c-type_list" class="form-control selectpicker" name="row[type_list]">
+                {foreach name="typeListList" item="vo"}
+                    <option value="{$key}" {in name="key" value="1"}selected{/in}>{$vo}</option>
+                {/foreach}
+            </select>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Threshold')}:</label>
+        <div class="col-xs-12 col-sm-8">
+           金额: <input id="c-threshold" class="form-control" step="0.01" name="row[threshold]" type="number" style="width: 80%"> 元
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Con')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <span id="con_title">减免: </span><input id="c-con" class="form-control" step="0.01" name="row[con]" type="number" style="width: 80%"><span id="con_util"> 元</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Time_type')}:</label>
+        <div class="col-xs-12 col-sm-8">
+                        
+            <select  id="c-time_type" class="form-control selectpicker" name="row[time_type]">
+                {foreach name="timeTypeList" item="vo"}
+                    <option value="{$key}" {in name="key" value="1"}selected{/in}>{$vo}</option>
+                {/foreach}
+            </select>
+
+        </div>
+    </div>
+    <div id="start_end_time_type">
+        <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-2">{:__('Start_time')}:</label>
+            <div class="col-xs-12 col-sm-8">
+                <input id="c-start_time" class="form-control datetimepicker" data-date-format="YYYY-MM-DD" data-use-current="true" name="row[start_time]" type="text" value="{:date('Y-m-d H:i:s')}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-xs-12 col-sm-2">{:__('End_time')}:</label>
+            <div class="col-xs-12 col-sm-8">
+                <input id="c-end_time" class="form-control datetimepicker" data-date-format="YYYY-MM-DD" data-use-current="true" name="row[end_time]" type="text" value="{:date('Y-m-d H:i:s')}">
+            </div>
+        </div>
+    </div>
+    <div class="form-group" id="day_time_type" style="display: none;">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Day')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-day" class="form-control" name="row[day]" type="number">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Use_info')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-use_info" class="form-control" name="row[use_info]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Inventory')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-inventory" class="form-control" name="row[inventory]" type="number" value="0">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Can_num')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-can_num" class="form-control" name="row[can_num]" type="number">
+        </div>
+    </div>
+    <!--<div class="form-group">-->
+        <!--<label class="control-label col-xs-12 col-sm-2">{:__('Sent')}:</label>-->
+        <!--<div class="col-xs-12 col-sm-8">-->
+            <!--<input id="c-sent" class="form-control" name="row[sent]" type="number" value="0">-->
+        <!--</div>-->
+    <!--</div>-->
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>

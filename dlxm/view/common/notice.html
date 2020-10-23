@@ -1,0 +1,7 @@
+{volist id='vo' name='list'}
+    <?php if($vo['cate'] == 1){ ?>
+    <li><a href="{:url('workorder/workorder')}?ref=addtabs" data-type="content"> <i class="fa fa-list"></i>  {in name="vo['is_read']" value="0"}<i class="tip"></i> {/in}{:$vo['content']}</a></li>
+    <?php }else if($vo['cate'] == 2){ ?>
+    <li><a href="{:url('/admin/shop_order')}?ref=addtabs" data-type="content"> <i class="fa fa-file-text-o"></i> {in name="vo['is_read']" value="0"}<i class="tip"></i> {/in}{:$vo['content']}</a></li>
+    <?php } ?>
+{/volist}

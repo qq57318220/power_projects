@@ -1,0 +1,106 @@
+<form id="edit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('User_id')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-user_id" data-rule="required" data-source="user/user/index" data-field="nickname" class="form-control selectpage" name="row[user_id]" type="text" value="{$row.user_id}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Order_id')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-order_id" data-rule="required" data-source="order/index" class="form-control selectpage" name="row[order_id]" type="text" value="{$row.order_id}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Order_product_id')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-order_product_id" data-rule="required" data-source="order/product/index" class="form-control selectpage" name="row[order_product_id]" type="text" value="{$row.order_product_id}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('As_status')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            
+            <div class="radio">
+            {foreach name="asStatusList" item="vo"}
+            <label for="row[as_status]-{$key}"><input id="row[as_status]-{$key}" name="row[as_status]" type="radio" value="{$key}" {in name="key" value="$row.as_status"}checked{/in} /> {$vo}</label> 
+            {/foreach}
+            </div>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('As_type')}:</label>
+        <div class="col-xs-12 col-sm-8">
+                        
+            <select  id="c-as_type" class="form-control selectpicker" name="row[as_type]">
+                {foreach name="asTypeList" item="vo"}
+                    <option value="{$key}" {in name="key" value="$row.as_type"}selected{/in}>{$vo}</option>
+                {/foreach}
+            </select>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('As_reason')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-as_reason" class="form-control" name="row[as_reason]" type="text" value="{$row.as_reason}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Refund_status')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            
+            <div class="radio">
+            {foreach name="refundStatusList" item="vo"}
+            <label for="row[refund_status]-{$key}"><input id="row[refund_status]-{$key}" name="row[refund_status]" type="radio" value="{$key}" {in name="key" value="$row.refund_status"}checked{/in} /> {$vo}</label> 
+            {/foreach}
+            </div>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Apply_refund')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-apply_refund" class="form-control" step="0.01" name="row[apply_refund]" type="number" value="{$row.apply_refund}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Refund_total')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-refund_total" class="form-control" step="0.01" name="row[refund_total]" type="number" value="{$row.refund_total}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Refund_sn')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-refund_sn" class="form-control" name="row[refund_sn]" type="text" value="{$row.refund_sn}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Number')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-number" class="form-control" name="row[number]" type="number" value="{$row.number}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Shipping_ment')}:</label>
+        <div class="col-xs-12 col-sm-8">
+                        
+            <select  id="c-shipping_ment" class="form-control selectpicker" name="row[shipping_ment]">
+                {foreach name="shippingMentList" item="vo"}
+                    <option value="{$key}" {in name="key" value="$row.shipping_ment"}selected{/in}>{$vo}</option>
+                {/foreach}
+            </select>
+
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>

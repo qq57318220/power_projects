@@ -1,0 +1,42 @@
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Warning_product_id')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            {:build_select('row[warning_product_id]', $groupName, null, ['class'=>'form-control', 'required'=>''])}
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Warning_product_name')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-warning_product_name" class="form-control" name="row[warning_product_name]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Warning_images')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input id="c-warning_images" class="form-control" size="50" name="row[warning_images]" type="text">
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="plupload-warning_images" class="btn btn-danger plupload" data-input-id="c-warning_images" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="true" data-preview-id="p-warning_images"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                    <span><button type="button" id="fachoose-warning_images" class="btn btn-primary fachoose" data-input-id="c-warning_images" data-mimetype="image/*" data-multiple="true"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                </div>
+                <span class="msg-box n-right" for="c-warning_images"></span>
+            </div>
+            <ul class="row list-inline plupload-preview" id="p-warning_images"></ul>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Warning_remark')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-warning_remark" class="form-control" name="row[warning_remark]" type="text">
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>

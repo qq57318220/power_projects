@@ -1,0 +1,258 @@
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Merchant_id')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-merchant_id" data-rule="required" data-source="/admin/merchant/getMchList/type/0"
+                   onchange="ck_mch_id()" class="form-control selectpage" name="row[merchant_id]" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Name')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-name" data-rule="required" class="form-control" name="row[name]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Product_id')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-product_id" data-rule="required" data-source="shop/product/index"
+                   class="form-control selectpage" name="row[product_id]" type="text" value="">
+        </div>
+    </div>
+    <!--关联属性初始数据-->
+    <input id="c-weight" type="hidden">
+    <input id="c-cost_price" type="hidden">
+    <input id="c-line_price" type="hidden">
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Price')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-price" class="form-control" step="0.01" name="row[price]" type="number">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Supply_price')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-supply_price" data-rule="required;range(0~)" class="form-control" step="0.01" name="row[supply_price]" type="number">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Inventory')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-inventory" class="form-control" name="row[inventory]" type="number" value="0">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">产品属性:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-has_prop" name="row[has_prop]" type="hidden" value="0">
+            <a href="javascript:;" onclick="prop_swc(this),prop_swc2(this)" data-toggle="switcher" class="btn-switcher"
+               data-input-id="c-has_prop" data-yes="1" data-no="0">
+                <i class="fa fa-toggle-on text-success fa-flip-horizontal text-gray fa-2x"></i>
+            </a>
+
+            <!--属性设置start-->
+            <div class="prop hidden">
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">选择属性</h3>
+                    </div>
+
+                    <div class="panel-body">
+                        <template v-for="item in show_prop_list" :key="item.id">
+                            <input type="hidden" class="allPid" :value="item.id">
+                            <ul class="list-inline">
+                                <li><h4 class="text-info">{{item.name}}:</h4></li>
+                                <li v-for="v in item.propval" :key="item.id+'-'+v.id">
+                                    <div class="checkbox"><label><input type="checkbox" class="allval"
+                                                                        :class="'pid_'+v.pid"
+                                                                        onchange="check_propval(this)"
+                                                                        :data-info="JSON.stringify(v)">{{v.name}}</label>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </template>
+                    </div>
+
+                </div>
+
+                <div class="panel panel-info propval hidden">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">设置属性</h3>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table text-center">
+                            <thead>
+                            <tr>
+                                <th style="width: 20%">属性名称</th>
+                                <th>划线价</th>
+                                <th>售卖价</th>
+                                <th>供货价</th>
+                                <th>成本价</th>
+                                <th>重量（kg）</th>
+                                <th>库存</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <!--属性设置end-->
+
+        </div>
+    </div>
+
+    <!--    <div class="form-group">-->
+    <!--        <label class="control-label col-xs-12 col-sm-2">{:__('Has_prop')}:</label>-->
+    <!--        <div class="col-xs-12 col-sm-8">-->
+    <!--                        -->
+    <!--            <select  id="c-has_prop" class="form-control selectpicker" name="row[has_prop]">-->
+    <!--                {foreach name="hasPropList" item="vo"}-->
+    <!--                    <option value="{$key}" {in name="key" value="0"}selected{/in}>{$vo}</option>-->
+    <!--                {/foreach}-->
+    <!--            </select>-->
+
+    <!--        </div>-->
+    <!--    </div>-->
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Start_time')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-start_time" data-rule="required" class="form-control datetimepicker"
+                   data-date-format="YYYY-MM-DD HH:mm:ss" data-use-current="true" name="row[start_time]" type="text"
+                   value="{:date('Y-m-d H:i:s')}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('End_time')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-end_time" data-rule="required" class="form-control datetimepicker"
+                   data-date-format="YYYY-MM-DD HH:mm:ss" data-use-current="true" name="row[end_time]" type="text"
+                   value="{:date('Y-m-d H:i:s')}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Flag')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <dl data-name="row[flag]" data-rule="required" class="fieldlist" data-template="testtpl">
+                <dd>
+                    <ins>可选宣言</ins>
+                </dd>
+                <dd class="form-inline"></dd>
+                <dd><a href="javascript:;" class="btn btn-sm btn-success btn-append"><i class="fa fa-plus"></i> 追加</a></dd>
+                <textarea name="row[flag]" cols="30" rows="5" class="form-control hide">[{"flag":"走过路过点个赞"},{"flag":"只要人人献出一点爱"},{"flag":"都来捧个人场吧"}]</textarea>
+            </dl>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Content')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <textarea id="c-content" class="form-control editor" rows="5" name="row[content]" cols="50"></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Days')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-days" data-rule="required" class="form-control" name="row[days]" type="number" value="24">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">档位金额:</label>
+        <div class="col-xs-12 col-sm-8">
+            <dl data-name="row[total_level]" data-rule="required" class="fieldlist" data-template="pricetpl">
+                <dd>
+                    <ins>金额</ins>
+                </dd>
+                <dd class="form-inline"></dd>
+                <dd><a href="javascript:;" class="btn btn-sm btn-success btn-append"><i class="fa fa-plus"></i> 追加</a></dd>
+                <textarea name="row[total_level]" cols="30" rows="5" class="form-control hide">[{"total_level":10},{"total_level":20},{"total_level":50},{"total_level":100},{"total_level":200}]</textarea>
+            </dl>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Weigh')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-weigh" class="form-control" name="row[weigh]" type="number" value="0">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Status')}:</label>
+        <div class="col-xs-12 col-sm-8">
+
+            <div class="radio">
+                {foreach name="statusList" item="vo"}
+                <label for="row[status]-{$key}"><input id="row[status]-{$key}" name="row[status]" type="radio"
+                                                       value="{$key}" {in name="key" value="online" }checked{/in} />
+                    {$vo}</label>
+                {/foreach}
+            </div>
+
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>
+<script src="/assets/js/vue.min.js"></script>
+<script>
+    var prop_list = {:json_encode($prop_list)};//所有产品属性初始化
+    // console.log(prop_list);
+    var vm = new Vue({
+        el: "#add-form",
+        data: {
+            merchant_id: 0,
+        },
+        computed: {
+            show_prop_list: function () {
+                if (this.merchant_id == 0) {
+                    return [];
+                }
+                var items = [];
+                if (prop_list.length > 0) {
+                    for (var item of prop_list) {
+                        if (item.merchant_id == this.merchant_id) {
+                            items.push(item);
+                        }
+                    }
+                }
+                // console.log(items);
+                return items;
+            },
+        },
+
+    });
+
+    function ck_mch_id() {
+        vm.merchant_id = $('#c-merchant_id').val();
+        // console.log(vm.merchant_id);
+        $('.propval').addClass('hidden');
+        $('.propval tbody').children().remove();
+    }
+
+</script>
+<!--定义模板-->
+<script type="text/template" id="testtpl">
+    <dd class="form-inline">
+        <input type="text" name="<%=name%>[<%=index%>][flag]" class="form-control" value="<%=row.flag%>" size="30" style="width: 400px;">
+        <span class="btn btn-sm btn-danger btn-remove"><i class="fa fa-times"></i></span> <span class="btn btn-sm btn-primary btn-dragsort"><i class="fa fa-arrows"></i></span>
+    </dd>
+</script>
+<script type="text/template" id="pricetpl">
+    <dd class="form-inline">
+        <input type="text" name="<%=name%>[<%=index%>][total_level]" class="form-control" value="<%=row.total_level%>" size="30">
+        <span class="btn btn-sm btn-danger btn-remove"><i class="fa fa-times"></i></span> <span class="btn btn-sm btn-primary btn-dragsort"><i class="fa fa-arrows"></i></span>
+    </dd>
+</script>
+{include file="../application/admin/view/shop/group/check_propval.html" /}

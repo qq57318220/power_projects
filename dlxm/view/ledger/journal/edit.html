@@ -1,0 +1,146 @@
+<form id="edit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Device_id')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-device_id" data-rule="required" data-source="ledger/ledger/index" data-field="device_name" class="form-control selectpage" name="row[device_id]" type="text" value="{$row.device_id|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Product_name')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-product_name" class="form-control" name="row[product_name]" type="text" value="{$row.product_name|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Device_name')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-device_name" class="form-control" name="row[device_name]" type="text" value="{$row.device_name|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Device_number')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-device_number" class="form-control" name="row[device_number]" type="text" value="{$row.device_number|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Surrounding_environment')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-surrounding_environment" class="form-control" name="row[surrounding_environment]" type="text" value="{$row.surrounding_environment|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Ambient_temperature')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-ambient_temperature" class="form-control" name="row[ambient_temperature]" type="text" value="{$row.ambient_temperature|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Environment_remark')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-environment_remark" class="form-control" name="row[environment_remark]" type="text" value="{$row.environment_remark|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Failure_condition')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-failure_condition" class="form-control" name="row[failure_condition]" type="text" value="{$row.failure_condition|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Cause_analysis')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-cause_analysis" class="form-control" name="row[cause_analysis]" type="text" value="{$row.cause_analysis|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Is_maintenance')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-is_maintenance" class="form-control" name="row[is_maintenance]" type="number" value="{$row.is_maintenance|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Condition_remark')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-condition_remark" class="form-control" name="row[condition_remark]" type="text" value="{$row.condition_remark|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Work_test')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-work_test" class="form-control" name="row[work_test]" type="text" value="{$row.work_test|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Conclusion_advice')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-conclusion_advice" class="form-control" name="row[conclusion_advice]" type="text" value="{$row.conclusion_advice|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Sign_file')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input id="c-sign_file" class="form-control" size="50" name="row[sign_file]" type="text" value="{$row.sign_file|htmlentities}">
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="plupload-sign_file" class="btn btn-danger plupload" data-input-id="c-sign_file" data-multiple="false" data-preview-id="p-sign_file"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                    <span><button type="button" id="fachoose-sign_file" class="btn btn-primary fachoose" data-input-id="c-sign_file" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                </div>
+                <span class="msg-box n-right" for="c-sign_file"></span>
+            </div>
+            <ul class="row list-inline plupload-preview" id="p-sign_file"></ul>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Scene_images')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input id="c-scene_images" class="form-control" size="50" name="row[scene_images]" type="text" value="{$row.scene_images|htmlentities}">
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="plupload-scene_images" class="btn btn-danger plupload" data-input-id="c-scene_images" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="true" data-preview-id="p-scene_images"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                    <span><button type="button" id="fachoose-scene_images" class="btn btn-primary fachoose" data-input-id="c-scene_images" data-mimetype="image/*" data-multiple="true"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                </div>
+                <span class="msg-box n-right" for="c-scene_images"></span>
+            </div>
+            <ul class="row list-inline plupload-preview" id="p-scene_images"></ul>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Related_remark')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-related_remark" class="form-control" name="row[related_remark]" type="text" value="{$row.related_remark|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Person_evaluate')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-person_evaluate" class="form-control" name="row[person_evaluate]" type="text" value="{$row.person_evaluate|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Type')}:</label>
+        <div class="col-xs-12 col-sm-8">
+                        
+            <select  id="c-type" class="form-control selectpicker" name="row[type]">
+                {foreach name="typeList" item="vo"}
+                    <option value="{$key}" {in name="key" value="$row.type"}selected{/in}>{$vo}</option>
+                {/foreach}
+            </select>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Create_time')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-create_time" data-rule="required" class="form-control datetimepicker" data-date-format="YYYY-MM-DD HH:mm:ss" data-use-current="true" name="row[create_time]" type="text" value="{:$row.create_time?datetime($row.create_time):''}">
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>

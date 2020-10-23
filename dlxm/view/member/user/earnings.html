@@ -1,0 +1,34 @@
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">当天收益:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input  data-rule="required" class="form-control" name="" type="text" value="{$toDayAmount ?? 0}" disabled>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">7天收益:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input  data-rule="required" class="form-control" name="" type="text" value="{$sevenDaysAmount ?? 0}" disabled>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">30天收益:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input  data-rule="required" class="form-control" name="" type="text" value="{$thirtyDaysAmount ?? 0}" disabled>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">总收益:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input  data-rule="required" class="form-control" name="" type="text" value="{$sum ?? 0}" disabled>
+        </div>
+    </div>
+
+
+
+
+</form>

@@ -1,0 +1,71 @@
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label class="control-label col-md-2  col-lg-2">奖励设置:</label>
+        <div class="col-md-10  col-lg-8">
+
+            <!--属性设置start-->
+            <div class="prop">
+
+                <div class="panel panel-info propval ">
+
+                    <div class="panel-body">
+                        <table class="table text-center">
+                            <thead>
+                            <tr>
+                                <th style="width: 10%">身份</th>
+                                {foreach $deeps as $item}
+                                <th>{$item.name}</th>
+                                {/foreach}
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {foreach $gradeRatios as $item}
+                            <tr>
+                                <td>{$item.name}</td>
+                                {foreach $item['ratio'] as $v}
+                                <td>
+                                    <input type="hidden" name="ratio_id[]" value="{$v['id']}">
+                                    <input type="text" class="form-control" name="ratio[]" value="{$v['ratio']}">
+                                </td>
+                                {/foreach}
+                            </tr>
+                            {/foreach}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <!--属性设置end-->
+
+        </div>
+    </div>
+    <input id="row[buy_self]-0" name="row[buy_self]" type="hidden" value="0" data-tip="开启后，所有推广员自己购买商品会获得佣金" />
+
+    <!--    <div class="form-group">-->
+<!--        <label class="control-label col-xs-12 col-sm-2">推广员自购奖励:</label>-->
+<!--        <div class="col-sm-8 col-xs-12">-->
+<!--            <label for="row[buy_self]-1"><input id="row[buy_self]-1" name="row[buy_self]" type="radio" value="1" data-tip="开启后，所有推广员自己购买商品会获得佣金" {eq-->
+<!--                                                name="row.buy_self" value="1"}checked{/eq}> 开启</label>-->
+<!--            <label for="row[buy_self]-0"><input id="row[buy_self]-0" name="row[buy_self]" type="radio" value="0" data-tip="开启后，所有推广员自己购买商品会获得佣金" {eq-->
+<!--                                                name="row.buy_self" value="0"}checked{/eq}> 关闭</label>-->
+<!--        </div>-->
+<!--    </div>-->
+
+
+<!--    <div class="form-group">-->
+<!--        <label class="control-label col-xs-12 col-sm-2">推广员协议:</label>-->
+<!--        <div class="col-xs-12 col-sm-8">-->
+<!--            <textarea id="c-promoter_con" class="form-control editor" rows="5" name="row[promoter_con]" cols="50">{$row.promoter_con}</textarea>-->
+<!--        </div>-->
+<!--    </div>-->
+
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>

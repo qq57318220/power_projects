@@ -1,0 +1,338 @@
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="" >
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Category_ids')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-category_ids" data-rule="required" onchange="ck_category_ids()" data-source="shop/product_category" data-multiple="true" class="form-control selectpage" name="row[category_ids]" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Name')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-name" data-rule="required" class="form-control" name="row[name]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Product_sn')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-product_sn" class="form-control" data-rule="remote(shop/product/check_productsn_unique)" name="row[product_sn]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Image')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input id="c-image" data-rule="required" class="form-control" size="50" name="row[image]" type="text">
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="plupload-image" class="btn btn-danger plupload" data-input-id="c-image" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false" data-preview-id="p-image"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                    <span><button type="button" id="fachoose-image" class="btn btn-primary fachoose" data-input-id="c-image" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                </div>
+                <span class="msg-box n-right" for="c-image"></span>
+            </div>
+            <ul class="row list-inline plupload-preview" id="p-image"></ul>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Product_remark')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-product_remark" class="form-control" name="row[product_remark]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Images')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input id="c-images" class="form-control" size="50" name="row[images]" type="text">
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="plupload-images" class="btn btn-danger plupload" data-input-id="c-images" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="true" data-preview-id="p-images"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                    <span><button type="button" id="fachoose-images" class="btn btn-primary fachoose" data-input-id="c-images" data-mimetype="image/*" data-multiple="true"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                </div>
+                <span class="msg-box n-right" for="c-images"></span>
+            </div>
+            <ul class="row list-inline plupload-preview" id="p-images"></ul>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Inventory')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-inventory" data-rule="required" class="form-control" name="row[inventory]" type="number">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Weight')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-weight" class="form-control" step="0.01" name="row[weight]" type="number">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Line_price')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-line_price" data-rule="required" class="form-control" step="0.01" name="row[line_price]" type="number">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Price')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-price" data-rule="required;range(0~)" class="form-control" step="0.01" name="row[price]" type="number">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Supply_price')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-supply_price" data-rule="required;range(0~)" class="form-control" step="0.01" name="row[supply_price]" type="number">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Cost_price')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-cost_price" data-rule="required" class="form-control" step="0.01" name="row[cost_price]" type="number">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Score')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-score" data-rule="required;range(0~);integer" class="form-control" step="1" name="row[score]" type="number" value="0">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">产品属性:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input  id="c-has_prop" name="row[has_prop]" type="hidden" value="0">
+            <a href="javascript:;" onclick="prop_swc(this)" data-toggle="switcher" class="btn-switcher" data-input-id="c-has_prop" data-yes="1" data-no="0" >
+                <i class="fa fa-toggle-on text-success fa-flip-horizontal text-gray fa-2x"></i>
+            </a>
+
+            <!--属性设置start-->
+            <div class="prop hidden">
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">选择属性</h3>
+                    </div>
+
+                    <div class="panel-body" >
+                        <template v-for="item in show_prop_list" :key="item.id">
+                            <input type="hidden" class="allPid" :value="item.id">
+                            <ul class="list-inline">
+                                <li> <h4 class="text-info">{{item.name}}:</h4></li>
+                                <li v-for="v in item.propval" :key="item.id+'-'+v.id">
+                                    <div class="checkbox"><label><input type="checkbox" class="allval" :class="'pid_'+v.pid" onchange="check_propval(this)"  :data-info="JSON.stringify(v)">{{v.name}}</label></div>
+                                </li>
+
+                            </ul>
+                        </template>
+                    </div>
+
+
+
+                </div>
+
+                <div class="panel panel-info propval hidden">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">设置属性</h3>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table text-center">
+                            <thead>
+                            <tr>
+                                <th style="width: 20%">属性名称</th>
+                                <th>划线价</th>
+                                <th>售卖价</th>
+                                <th>供货价</th>
+                                <th>成本价</th>
+                                <th>积分</th>
+                                <th>重量（kg）</th>
+                                <th>库存</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <!--属性设置end-->
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Pro_reward')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-pro_reward" data-rule="range(0~1)" class="form-control" step="0.001" name="row[pro_reward]" type="number">
+            <span class="help-block">（0～1）填写0则不奖励</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Video_file')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input id="c-video_file" class="form-control" size="50" name="row[video_file]" type="text">
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="plupload-video_file" class="btn btn-danger plupload" data-input-id="c-video_file" data-multiple="false" data-preview-id="p-video_file"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                    <span><button type="button" id="fachoose-video_file" class="btn btn-primary fachoose" data-input-id="c-video_file" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                </div>
+                <span class="msg-box n-right" for="c-video_file"></span>
+            </div>
+            <ul class="row list-inline plupload-preview" id="p-video_file"></ul>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Status')}:</label>
+        <div class="col-xs-12 col-sm-8">
+
+            <div class="radio">
+            {foreach name="statusList" item="vo"}
+            <label for="row[status]-{$key}"><input id="row[status]-{$key}" name="row[status]" type="radio" value="{$key}" {in name="key" value="online"}checked{/in} /> {$vo}</label>
+            {/foreach}
+            </div>
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Post_status')}:</label>
+        <div class="col-xs-12 col-sm-8">
+
+            <div class="radio">
+                {foreach name="postStatusList" item="vo"}
+                {lt name="key" value="2"}
+                <label for="row[post_status]-{$key}"><input id="row[post_status]-{$key}" name="row[post_status]" type="radio" value="{$key}"  {in name="key" value="1"}checked{/in}/> {$vo}</label>
+                {/lt}
+                {/foreach}
+            </div>
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Is_as')}:</label>
+        <div class="col-xs-12 col-sm-8">
+
+            <input  id="c-is_as" name="row[is_as]" type="hidden" value="0">
+            <a href="javascript:;" data-toggle="switcher" class="btn-switcher" data-input-id="c-is_as" data-yes="1" data-no="0" >
+                <i class="fa fa-toggle-on text-success fa-flip-horizontal text-gray fa-2x"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Shipping_switch')}:</label>
+        <div class="col-xs-12 col-sm-8">
+
+            <input  id="c-shipping_switch" name="row[shipping_switch]" type="hidden" value="0">
+            <a href="javascript:;" data-toggle="switcher" class="btn-switcher" data-input-id="c-shipping_switch" data-yes="1" data-no="0" >
+                <i class="fa fa-toggle-on text-success fa-flip-horizontal text-gray fa-2x"></i>
+            </a>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Shipping_rule_id')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-shipping_rule_id" data-rule="" data-source="general/shipping_rule/index"  class="form-control selectpage" name="row[shipping_rule_id]" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Tags')}:</label>
+        <div class="col-xs-12 col-sm-8">
+
+            <select  id="c-tags" class="form-control selectpicker" multiple="" name="row[tags][]">
+                {foreach name="tagsList" item="vo"}
+                    <option value="{$key}" {in name="key" value=""}selected{/in}>{$vo}</option>
+                {/foreach}
+            </select>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Vsalesnum')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-vsalesnum" class="form-control" name="row[vsalesnum]" type="number" value="0">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Weigh')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-weigh" class="form-control" name="row[weigh]" type="number" value="0">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Content')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <textarea id="c-content" class="form-control editor" rows="5" name="row[content]" cols="50"></textarea>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Warranty')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <textarea id="c-warranty" class="form-control editor" rows="5" name="row[warranty]" cols="50"></textarea>
+        </div>
+    </div>
+
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>
+
+
+<script src="/assets/js/vue.min.js"></script>
+<script>
+    var prop_list = {:json_encode($prop_list)};//所有产品属性初始化
+    var merchant_id = {:json_encode($merchant_id)};//所有产品属性初始化
+    var vm = new Vue({
+        el:"#add-form",
+        data:{
+            merchant_id:0,
+            category_ids:[],
+        },
+        computed:{
+            show_prop_list:function(){
+                if(merchant_id == 0){
+                    return [];
+                }
+                if(this.category_ids.length == 0){
+                    return [];
+                }
+
+                var items = [];
+                if(prop_list.length > 0){
+                    for(var item of prop_list){
+                        if(item.merchant_id == merchant_id){
+                            //分类筛选
+                            let product_category_ids = item.product_category_ids.split(',');
+                            for(cid of product_category_ids){
+                                if(this.category_ids.indexOf(cid)!=-1 && items.indexOf(item) == -1){
+                                    items.push(item)
+                                    break;
+                                }
+                            }
+
+                        }
+                    }
+                }
+                return items;
+            },
+        },
+
+    });
+
+    function ck_category_ids(){
+        let category_ids = $('#c-category_ids').val();
+         vm.category_ids = category_ids?category_ids.split(','):[];
+         $('.propval').addClass('hidden');
+         $('.propval tbody').children().remove();
+    }
+
+</script>
+
+{include file="../application/admin/view/shop/common/check_propval.html" /}

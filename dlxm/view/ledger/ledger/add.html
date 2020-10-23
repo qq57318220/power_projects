@@ -1,0 +1,226 @@
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Mechanism_name')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-mechanism_id" data-rule="required" data-source="power/mechanism/index" class="form-control selectpage" name="row[mechanism_id]" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Product_name')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-product_id" data-rule="required" data-source="power/product/index" class="form-control selectpage" name="row[product_id]" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Customer_name')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-customer_id" data-rule="required" data-source="power/customer/index" class="form-control selectpage" name="row[customer_id]" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Order')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <?php if(!empty($order_product_id)){ ?>
+                <input id="c-order" data-rule="required" data-params='{"custom[id]":"{$order_product_id}"}' data-source="shop/tuan_order/index" data-field="order_sn" class="form-control selectpage" name="row[order]" type="text" value="">
+            <?php }else{ ?>
+                <input id="c-order" data-rule="required"  data-source="shop/tuan_order/index" data-field="order_sn" class="form-control selectpage" name="row[order]" type="text" value="">
+            <?php } ?>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Order_city')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class='control-relative'><input id="c-order_city" class="form-control" data-toggle="city-picker" name="row[order_city]" type="text" data-rule="required"></div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Ledger_image')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input id="c-ledger_image" class="form-control" size="50" name="row[ledger_image]" type="text">
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="plupload-ledger_image" class="btn btn-danger plupload" data-input-id="c-ledger_image" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false" data-preview-id="p-ledger_image"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                    <span><button type="button" id="fachoose-ledger_image" class="btn btn-primary fachoose" data-input-id="c-ledger_image" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                </div>
+                <span class="msg-box n-right" for="c-ledger_image"></span>
+            </div>
+            <ul class="row list-inline plupload-preview" id="p-ledger_image"></ul>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Device_name')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-device_name" data-rule="required" class="form-control" name="row[device_name]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Device_number')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-device_number" data-rule="required" class="form-control" name="row[device_number]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Specification')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-specification" class="form-control" name="row[specification]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Outline_size')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-outline_size" class="form-control" name="row[outline_size]" type="text" onkeyup="value=value.replace(/[\u4e00-\u9fa5]/ig,'')">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Factory_time')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-factory_time" class="form-control datetimepicker" data-date-format="YYYY-MM-DD HH:mm:ss" data-use-current="true" name="row[factory_time]" type="text" value="{:date('Y-m-d H:i:s')}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Commission_time')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-commission_time" class="form-control datetimepicker" data-date-format="YYYY-MM-DD HH:mm:ss" data-use-current="true" name="row[commission_time]" type="text" value="{:date('Y-m-d H:i:s')}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Factory_number')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-factory_number" class="form-control" name="row[factory_number]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Supplier')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-supplier" class="form-control" name="row[supplier]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Device_contacts')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-device_contacts" class="form-control" name="row[device_contacts]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Device_phone')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-device_phone" class="form-control" name="row[device_phone]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Install_address')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-install_address" class="form-control" name="row[install_address]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Device_use_years')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-device_use_years" class="form-control" step="0.1" name="row[device_use_years]" type="number">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Subordinate_departments')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-subordinate_departments" class="form-control" name="row[subordinate_departments]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Person')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-person" class="form-control" name="row[person]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Maintenance_time')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-maintenance_time" class="form-control datetimepicker" data-date-format="YYYY-MM-DD HH:mm:ss" data-use-current="true" name="row[maintenance_time]" type="text" value="{:date('Y-m-d H:i:s')}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Performance_parameter')}:</label>
+        <div class="col-xs-12 col-sm-8 append">
+            <input id="c-performance-parameter" data-rule="" data-source="ledger/paramete/index" class="form-control selectpage" name="row[performance_parameter]" data-multiple="true" type="text" value="">
+            <a href="/admin/ledger/paramete/" style="margin-top: 10px;" class="btn btn-xs btn-success btn-dialog" data-toggle="tooltip" title="" data-table-id="table" data-field-index="6" data-row-index="0" data-button-index="1" data-original-title="添加标题">添加标题</a>
+        </div>
+    </div>
+<!--    <div class="performanceParameters">-->
+<!--        <div class="form-group after">-->
+<!--            <label class="control-label col-xs-12 col-sm-2"></label>-->
+
+<!--            <div class="col-xs-12 col-sm-8 append">-->
+<!--                <input id="c-performance-title" data-rule=""  class="form-control" name="row[performance_title]" data-multiple="true" type="text" value="" placeholder="题目">-->
+
+<!--                <dl class="fieldlist" data-template="basictpl" data-name="row[performance_parameter]">-->
+<!--                    <dd>-->
+<!--                        <ins>{:__('属性名')}</ins>-->
+<!--                        <ins>{:__('数据')}</ins>-->
+<!--                    </dd>-->
+<!--                    <dd><a href="javascript:;" class="btn btn-sm btn-success btn-append"><i class="fa fa-plus"></i> {:__('Append')}</a></dd>-->
+<!--                </dl>-->
+<!--                <script id="basictpl" type="text/html">-->
+<!--                    <dd class="form-inline">-->
+<!--                        <ins><input type="text" name="<%=name%>[<%=index%>][title]" class="form-control" value="<%=row.title%>" placeholder="参数名称" size="10"/></ins>-->
+<!--                        <ins><input type="text" name="<%=name%>[<%=index%>][intro]" class="form-control" value="<%=row.intro%>" placeholder="系统参数"/></ins>-->
+<!--                        &lt;!&ndash;下面的两个按钮务必保留&ndash;&gt;-->
+<!--                        <span class="btn btn-sm btn-danger btn-remove"><i class="fa fa-times"></i></span>-->
+<!--                        &lt;!&ndash;                    <span class="btn btn-sm btn-primary btn-dragsort"><i class="fa fa-arrows"></i></span>&ndash;&gt;-->
+<!--                    </dd>-->
+<!--                </script>-->
+<!--                &lt;!&ndash;            <button type="" class="btn btn-default test">{:__('测试')}</button>&ndash;&gt;-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="form-group ">-->
+<!--        <label class="control-label col-xs-12 col-sm-2"></label>-->
+
+<!--        <div class="col-xs-12 col-sm-8 new_title">-->
+<!--            <input type="button" name="" class="form-control" value="添加题目" placeholder="参数名称" size="2" style="width: 120px;height: 40px;"/>-->
+<!--        </div>-->
+<!--    </div>-->
+
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Warning_identification')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-warning_identification" class="form-control" name="row[warning_identification]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Warning_product_id')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <!--<input id="c-warning_product_id" data-rule="required" data-source="warning/product/index" class="form-control selectpage" name="row[warning_product_id]" type="text" value="">-->
+            <input id="c-warning_product_id" data-field="warning_product_name" data-rule="" data-source="ledger/warning/index" class="form-control selectpage" name="row[warning_product_id]" data-multiple="true" type="text" value="">
+            <a href="/admin/ledger/warning/" style="margin-top: 10px;" class="btn btn-xs btn-success btn-dialog" data-toggle="tooltip" title="" data-table-id="table" data-field-index="6" data-row-index="0" data-button-index="1" data-original-title="添加警报">添加警报</a>
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('File')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input id="c-File" data-rule="" class="form-control" size="50" name="row[file]" type="text" value="">
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="plupload-File" class="btn btn-danger plupload" data-input-id="c-File"  data-multiple="true" data-preview-id="p-File"><i class="fa fa-upload"></i> 上传</button></span>
+                    <!--                    <span><button type="button" id="fachoose-avatar" class="btn btn-primary fachoose" data-input-id="c-avatar" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> 选择</button></span>-->
+                </div>
+                <span class="msg-box n-right" for="c-File"></span>
+            </div>
+            <ul class="row list-inline plupload-preview" id="p-File"></ul>
+        </div>
+    </div>
+
+
+
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+
+</form>

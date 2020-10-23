@@ -1,0 +1,60 @@
+<form id="edit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">订单号:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-order_sn" class="form-control" readonly type="text" value="{$row.order_sn}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">收货人:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-consignee" class="form-control" data-rule="required" name="row[consignee]" type="text" value="{$shipping.consignee}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">手机:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-phone" class="form-control" data-rule="required" name="row[phone]" type="text" value="{$shipping.phone}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">省份:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-province" class="form-control" data-rule="required" name="row[province]" type="text" value="{$shipping.province}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">城市:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-city" class="form-control" data-rule="required" name="row[city]" type="text" value="{$shipping.city}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">区/县:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-district" class="form-control" data-rule="required" name="row[district]" type="text" value="{$shipping.district}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">详细地址:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-detail_address" class="form-control" data-rule="required" name="row[detail_address]" type="text" value="{$shipping.detail_address}">
+        </div>
+    </div>
+
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+
+</form>

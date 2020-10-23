@@ -1,0 +1,79 @@
+
+<script>
+    function prop_swc(obj){
+        $(obj).prev().val()==0?$('.prop').removeClass('hidden'):$('.prop').addClass('hidden');
+    }
+
+    function prop_swc2(obj){
+        if($(obj).prev().val()==0){
+            $('#c-inventory').attr('disabled',true);
+            $('#c-inventory').val('');
+        }else{
+            $('#c-inventory').removeAttr('disabled');
+        }
+    }
+
+    function check_propval(obj){
+        var ckVals = $('.allval:checked');//所有已选中的属性值
+        if(ckVals.length == 0){
+            $('.propval').addClass('hidden');
+            $('.propval tbody').children().remove();
+        }else{
+            $('.propval').removeClass('hidden');
+            var ck_vals = [];
+            var allPid = $('.allPid');//所有属性的pid
+            for(var i=0;i<allPid.length;i++){
+                var vals = $('.pid_'+allPid[i].value+':checked');
+                if(vals.length == 0){
+                    continue;
+                }
+                var temp = [];
+                for (var j=0;j<vals.length;j++) {
+                    temp.push($(vals[j]).data('info'));
+                }
+                ck_vals.push(temp);
+            }
+
+            //排列组合
+            var lists = [[]];
+            for (var i = 0; i < ck_vals.length; i++) {
+                var tarr = [];
+                for (var j = 0; j < lists.length; j++) {
+                    for (var k = 0; k < ck_vals[i].length; k++) {
+                        tarr.push(lists[j].concat(ck_vals[i][k]));
+
+                    }
+                }
+                lists = tarr;
+            }
+            prop_table(lists);
+        }
+    }
+
+    //封装html
+    function prop_table(lists){
+        var tab = '';
+        for(var i = 0;i<lists.length;i++){
+            var name = '',props='';
+            for(var j = 0;j<lists[i].length;j++){
+                name += lists[i][j].name+'-';
+                props += lists[i][j].pid+':'+ lists[i][j].id+';';
+            }
+            name = name.substr(0,name.length-1);
+            props = props.substr(0,props.length-1);
+            var tr = '<tr>';
+            tr += '<td>'+name+'<input type="hidden" name="props[]" value="'+props+'"></td>';
+            tr += '<td><input type="number" class="form-control" name="line_price[]" value="'+$('#c-line_price').val()+'"></td>';
+            tr += '<td><input type="number" class="form-control" name="price[]" value="'+$('#c-price').val()+'"></td>';
+            tr += '<td><input type="number" class="form-control" name="supply_price[]" value="'+$('#c-supply_price').val()+'"></td>';
+            tr += '<td><input type="number" class="form-control" name="cost_price[]" value="'+$('#c-cost_price').val()+'"></td>';
+            tr += '<td><input type="number" class="form-control" name="weight[]" value="'+$('#c-weight').val()+'"></td>';
+            tr += '<td><input type="number" class="form-control" name="inventory[]" value="'+$('#c-inventory').val()+'"></td>';
+            tab += tr+'</tr>';
+        }
+        $('.propval tbody').html(tab);
+    }
+
+
+
+</script>

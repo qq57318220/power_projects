@@ -1,0 +1,33 @@
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>订单编号：{$odInfo.order_sn}</th>
+        <th>佣金总额：<span class="text-danger">{$odInfo.reward_amount}</span></th>
+    </tr>
+    </thead>
+</table>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>推广员信息</th>
+        <th>推广深度</th>
+        <th>提成比例</th>
+        <th>佣金状态</th>
+        <th>奖励佣金</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    {foreach $list as $v}
+    <tr>
+        <td>{$v->user->truename?:$v->user->nickname} {notempty name="v.user.avatar"}<img class="img-sm img-center" src="{$v.user.avatar}">{/notempty} </td><td>{$v.deep_level}</td>
+        <td>{$v.deep_rate*100}%</td><td>{$v.status_text}</td>
+        <td>{$v.reward_total}</td>
+    </tr>
+    {/foreach}
+
+    </tbody>
+</table>
+

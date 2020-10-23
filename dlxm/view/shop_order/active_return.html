@@ -1,0 +1,68 @@
+<form id="edit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>订单信息</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr><td>订单号：{$row.orderModel.order_sn}</td><td>已申请退换数量：{$row.return_number}</td></tr>
+        <tr><td>产品名称：{$row.name}</td><td>规格：{$row.props_name?:'-'}</td></tr>
+        <tr><td>售卖价：{$row.price}</td><td>购买数量：{$row.number}</td></tr>
+        <tr><td>优惠券：{$row.coupon_total}</td><td>邮费：{$row.freight}</td></tr>
+        <tr><td>实付金额：{$row.pay_amount}</td><td>已退款金额：{$row.refund_total}</td></tr>
+
+        </tbody>
+    </table>
+
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">退货数量:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-num" class="form-control" onchange="change_num(this)"  data-rule="required;range(1~{$row['number']-$row['return_number']})" name="row[number]" type="number" value="">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">退款金额:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-total" class="form-control"  data-rule="required;range(0~{$row['pay_amount']})" name="row[refund_total]" type="number" value="">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">退货原因:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-as_reason" class="form-control"   name="row[as_reason]" type="text" value="">
+        </div>
+    </div>
+
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+
+</form>
+
+<script>
+    function change_num(obj){
+        var num = parseInt($(obj).val());
+        var number = parseInt('{$row.number}');
+        var pay_amount = parseFloat('{$row.pay_amount}');
+        if(num > 0 && num <= number){
+            var total = pay_amount*num/number;
+            $('#c-total').val(total);
+        }else{
+            $(obj).val('');
+            $('#c-total').val('');
+        }
+
+
+    }
+
+</script>

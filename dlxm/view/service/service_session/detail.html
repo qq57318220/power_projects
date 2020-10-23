@@ -1,0 +1,250 @@
+<style>
+    body {
+        padding: 0px;
+        margin: 0px;
+
+    }
+    li {
+        list-style: none;
+    }
+    input {
+        border-radius: 5px;
+    }
+
+    .chatbox {
+        margin: auto;
+        transform: translateY(-10%);
+        box-shadow: 0 0 0 1px gray;
+        display: flex;
+    }
+
+    .chatright {
+        width: 100%;
+        height: 100%;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0,0,0,.21);
+        padding: 5px;
+
+    }
+    .chatright .top {
+        height: 10%;
+        display: flex;
+        align-items: center;
+        padding-left: 30px;
+    }
+    .chatright .center {
+        background-color: #edf5f8;
+        height:300px;
+        overflow-y: scroll;
+        padding-left: 10px;
+    }
+    .chatright .center ul {
+        padding: 10px;
+    }
+    .chatright .center li {
+        margin: 10px;
+        width: 100%;
+    }
+    .chatright .center p{
+        display: inline-block;
+    }
+    .msgcard {
+        margin: 0 10px 0 10px;
+        background-color: white;
+        border-radius: 10px;
+        padding: 10px;
+        max-width: 60%;
+    }
+    .msgcard img{
+        width: 30px;
+        height: 30px;
+    }
+    .msgright {
+         float: right;
+    }
+    .chatright .footer {
+        height: 25%;
+        background-color: #FBFCFC;
+    }
+    .footer p{
+        text-align: right;
+    }
+    .sendbtn {
+        height: 40px;
+        width: 80px;
+        border-radius: 10px;
+        background-color: #58D68D;
+        color: white;
+        font-weight: bold;
+        margin:10px 20px 0 0;
+    }
+    .userinfo{
+        display: inline-block;
+    }
+    .msgread{
+        color: #969696;
+    }
+    .kefu_emoji{
+        position: relative;
+    }
+    #kefu_emoji{
+        position: absolute;
+        bottom: 0px;
+        padding: 8px;
+        border: 1px solid var(--light);
+        width: 70%;
+        background-color: #eceff1;
+        display: none;
+        border-radius: 5px;
+        background: #fff;
+        z-index: 1070;
+        -webkit-box-shadow: #666 0px 0px 10px;
+        -moz-box-shadow: #666 0px 0px 10px;
+        box-shadow: #666 0px 0px 10px;
+        cursor:pointer;
+    }
+    #kefu_emoji img{
+        height: 48px;
+        width: 48px;
+        padding: 4px;
+    }
+    #kefu_emoji img:hover{
+        border: 1px solid #f2f2f2;
+    }
+    .write{
+        height: 100px;
+        padding: 8px;
+        display: block;
+        margin: 0 auto;
+        padding-left: 8px;
+        border-top: 1px solid var(--light);
+        box-sizing: border-box;
+    }
+    .write .write_top{
+        padding-bottom: 8px;
+    }
+    .write .smiley {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        content: '';
+        background-image: url(/assets/img/smiley.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        vertical-align: middle;
+        cursor:pointer;
+    }
+    .write .select_file {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        margin-left: 10px;
+        vertical-align: middle;
+        position: relative;
+        cursor:pointer;
+    }
+    .write #chatfile {
+        filter: alpha(opacity=0);
+        opacity: 0;
+        width: 20px;
+        height: 20px;
+        margin-top: 20px;
+        display: inline-block;
+        position: absolute;
+        z-index: 2;
+        border: #969696 solid 1px;
+    }
+    .write .attach {
+        display: inline-block;
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        content: '';
+        background-image: url(/assets/img/attachment.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        vertical-align: middle;
+        z-index: 1;
+    }
+    .write .write_top_span {
+        display: inline-block;
+        height: 20px;
+        font-size: 14px;
+        line-height: 20px;
+        margin-left: 10px;
+        vertical-align: middle;
+        color: #999;
+    }
+    .write pre {
+        font-size: 16px;
+        float: left;
+        width: 100%;
+        height: 60px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        padding-left: 2px;
+        white-space: pre-wrap;
+        word-break: normal;
+        color: var(--dark);
+        outline: none;
+        background-color: #fff;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-weight: 400;
+    }
+    .write #messages .emoji{
+        height: 20px;
+        width: 20px;
+    }
+</style>
+<link rel="stylesheet" href="/assets/emotion/emotion.css">
+
+
+
+        <div class="chatright">
+            <div class="top" style="padding: 10px 0">
+                <img style="border-radius: 20px; vertical-align: middle;width: 40px;height: 40px;" src="{$user.avatar}">
+                <span style="margin-left: 20px;">{$user.nickname}</span>
+
+
+            </div>
+            <div class="center" id="mbox">
+                <ul id="mlist">
+                    {foreach $messege_list as $m}
+                        <li class="{$m.sender_identity==0?'msgleft':'msgright'}">
+                            <div class="userinfo">
+                                <img style="border-radius: 20px; vertical-align: middle;width: 40px;height: 40px;" src="{$m.sender_name.avatar}">
+                            </div>
+                            <p class="msgcard">{$m.message}</p>
+                            <p class="msgread">{$m.status?"已读":"未读"}</p>
+                            <p class="">{:datetime($m.createtime,'Y-m-d H:i:s')}</p>
+                        </li>
+                    {/foreach}
+                    <input id="maxid" style="display: none;" value="{$maxid}">
+                </ul>
+            </div>
+            <div class="kefu_emoji">
+                <div id="kefu_emoji"></div>
+            </div>
+            <div class="write">
+                <div class="write_top">
+                    <i class="smiley"></i>
+                    <div class="select_file">
+                        <input id="chatfile" size="1" width="20" type="file" name="chatfile">
+                        <i class="attach"></i>
+                    </div>
+                    <span class="write_top_span" id="send_tis">在下面输入内容</span>
+                </div>
+                <input type="text" id="session_id" name="session_id" value="{$ids}" style="display: none">
+                <input type="text" id="message_type" name="message_type" value="0" style="display: none">
+                <pre contenteditable="plaintext-only" id="messages"></pre>
+                <div class="footer">
+                    <p><button class="sendbtn" id="send">发送</button></p>
+                </div>
+            </div>
+
+        </div>
+
+

@@ -1,0 +1,138 @@
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>订单信息</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr><td>{:__('Order_sn')}：{$row.order_sn}</td><td>支付订单号：{$row.paid.out_trade_no}</td></tr>
+    <tr><td>支付交易号：{$row.transaction_id?:'-'}</td><td>买家：{$row.users.truename?:$row.users.nickname}</td></tr>
+    <tr><td>{:__('Order_type')}：{$row.order_type_text}</td><td>{:__('Status')}：{$row.status_text}</td></tr>
+    <tr><td>{:__('Dowm_reason')}：{$row.dowm_reason?:'-'}</td><td>{:__('Pay_status')}：{$row.pay_status_text}</td></tr>
+    <tr><td>{:__('Pay_time')}：{$row.pay_time?datetime($row.pay_time):'-'}</td><td>{:__('Payment_name')}：{$row.payment_name}</td></tr>
+    <tr><td>{:__('Coupon_total')}：{$row.coupon_total}</td><td>{:__('Shipping_ment')}：{$row.shipping_ment_text}</td></tr>
+    <tr><td>{:__('Order_amount')}：{$row.order_amount}</td><td>{:__('Freight_amount')}：{$row.freight_amount}</td></tr>
+    <tr><td>{:__('Total_score')}：{$row.total_score}</td><td>{:__('Reward_amount')}：{$row.reward_amount}</td></tr>
+<!--    <tr><td>{:__('Total_gold')}：{$row.total_gold}</td><td>{:__('Gold_money')}：{$row.gold_money}</td></tr>-->
+    <tr><td>实付金额：<span class="text-danger">{$row.pay_amount}</span></td><td>{:__('Refund_amount')}：{$row.refund_amount}</td></tr>
+    <tr><td>供货商收入：<span class="text-danger">{$supply_price}</span></td><td>平台收入：{$platformIncome}</td></tr>
+
+    <tr><td>{:__('Buyer_message')}：{$row.buyer_message}</td><td></td></tr>
+
+    </tbody>
+</table>
+
+{eq name="row.shipping_ment" value="1"}
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>收货信息</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr><td>收货人：{$shipping.consignee}</td><td>手机：{$shipping.phone}</td></tr>
+    <tr><td colspan="2">收货地址：{$shipping.province} {$shipping.city} {$shipping.district}{$shipping.detail_address}</td></tr>
+    <tr><td>物流公司：{$shipping.shipping_company_name?:'-'}</td><td>物流单号：{$shipping.shipping_code?:'-'}</td></tr>
+    </tbody>
+</table>
+{/eq}
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>产品名称</th>
+        <th>规格</th>
+        <th>售卖价</th>
+        <th>数量</th>
+        <th>申请退货</th>
+        <th>已退货</th>
+        <th>优惠券</th>
+        <th>邮费</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    {foreach $products as $v}
+    <tr>
+        <td><img class="img-sm img-center" src="{$v.image}"> {$v.name}</td><td>{$v.props_name}</td>
+        <td>{$v.price}</td><td>{$v.number}</td><td>{$v.return_number}</td><td>{$v.return_number_agree}</td>
+        <td>{$v.coupon_total}</td><td>{$v.freight}</td>
+        {eq name="row.status" value="2"}
+
+        <td>
+            {neq name="row.order_type" value="4"}
+                {if condition="($v.return_number+$v.change_number) lt $v.number"}
+                <a href="/admin/shop_order/active_return/id/{$v.id}" class="btn btn-xs btn-success btn-dialog" data-toggle="tooltip" data-refresh="true" data-original-title="发起退货">退货</a>
+                {/if}
+            {/neq}
+        </td>
+
+
+        {/eq}
+    </tr>
+    {/foreach}
+
+    </tbody>
+</table>
+{notempty name="comments"}
+    <h4>评论信息</h4>
+    <table class="table table-striped" style="width:800px;border-collapse: collapse;">
+        <thead>
+        <tr>
+            <th class="span2">产品名称</th>
+            <th class="span2">规格</th>
+            <th class="span2">星级</th>
+            <th class="span2">评论内容</th>
+            <th class="span2">图片</th>
+            <th class="span2">评论时间</th>
+        </tr>
+        </thead>
+        <tbody>
+        {foreach $comments as $c}
+        <tr>
+            <td class="span2">{$c.product.name}</td>
+            <td class="span2">{$c.props}</td>
+            <td class="span2">{$c.star}</td>
+            <td class="span2">{$c.content}</td>
+            <td class="span2">
+                {if condition="$c.images"}
+                    {foreach $c.images as $i}
+                        <img class="img-sm" src="{$i}"></img>
+                    {/foreach}
+                {else}
+                    无图片
+                {/if}
+            </td>
+            <td class="span2">{:datetime($c.create_time,'Y-m-d H:i:s')}</td>
+        </tr>
+        {/foreach}
+
+        </tbody>
+    </table>
+{/notempty}
+
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>操作类型</th>
+        <th>日志</th>
+        <th>操作人</th>
+        <th>时间</th>
+    </tr>
+    </thead>
+    <tbody>
+    {empty name="$logs"}
+        <tr><td colspan="5" style="text-align: center">暂无记录</td></tr>
+    {else/}
+        {foreach $logs as $v}
+        <tr>
+            <td>{$v.id}</td><td>{$v.type_text}</td><td>{$v.content}</td>
+            <td>{$v.username}</td><td>{:date('Y-m-d H:i:s',$v['createtime'])}</td>
+        </tr>
+        {/foreach}
+    {/empty}
+    </tbody>
+</table>

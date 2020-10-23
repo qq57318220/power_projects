@@ -1,0 +1,65 @@
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Name')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-name" class="form-control" name="row[name]" type="text">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">商户名称:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-merchant_id" data-rule="required" data-source="/admin/merchant/getMchList/type/0" class="form-control selectpage" name="row[merchant_id]" type="text" value="">
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Type_list')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <select  id="c-type_list" class="form-control selectpicker" name="row[type_list]">
+                {foreach name="typeListList" item="vo"}
+                    <option value="{$key}" {in name="key" value="1"}selected{/in}>{$vo}</option>
+                {/foreach}
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2" id="First_num_label">{:__('First_num 1')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-first_num" class="form-control" data-rule="required;range(1~)" name="row[first_num]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2" id="Continue_num_label">{:__('Continue_num 1')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-continue_num" class="form-control" data-rule="required;range(1~)" name="row[continue_num]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2" id="First_price_label">{:__('First_price 1')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-first_price" class="form-control" step="0.01" name="row[first_price]" type="number" value="0.00">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2" id="Continue_price_label">{:__('Continue_price 1')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-continue_price" class="form-control" step="0.01" name="row[continue_price]" type="number" value="0.00">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Weigh')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-weigh" class="form-control" name="row[weigh]" type="number" value="0">
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>

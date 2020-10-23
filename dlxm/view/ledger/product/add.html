@@ -1,0 +1,234 @@
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Merchant_id')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-merchant_id" data-rule="required" data-source="merchant/index" class="form-control selectpage" name="row[merchant_id]" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Order_id')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-order_id" data-rule="required" data-source="order/index" class="form-control selectpage" name="row[order_id]" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Product_id')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-product_id" data-rule="required" data-source="product/index" class="form-control selectpage" name="row[product_id]" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Category_ids')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-category_ids" data-rule="required" data-source="category/selectpage" data-params='{"custom[type]":"shop_order_product"}' data-multiple="true" class="form-control selectpage" name="row[category_ids]" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Name')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-name" class="form-control" name="row[name]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Product_sn')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-product_sn" class="form-control" name="row[product_sn]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Image')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input id="c-image" class="form-control" size="50" name="row[image]" type="text">
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="plupload-image" class="btn btn-danger plupload" data-input-id="c-image" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false" data-preview-id="p-image"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                    <span><button type="button" id="fachoose-image" class="btn btn-primary fachoose" data-input-id="c-image" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                </div>
+                <span class="msg-box n-right" for="c-image"></span>
+            </div>
+            <ul class="row list-inline plupload-preview" id="p-image"></ul>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Props')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <textarea id="c-props" class="form-control " rows="5" name="row[props]" cols="50"></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Props_name')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <textarea id="c-props_name" class="form-control " rows="5" name="row[props_name]" cols="50"></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Weight')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-weight" class="form-control" step="0.01" name="row[weight]" type="number">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Freight')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-freight" class="form-control" step="0.01" name="row[freight]" type="number" value="0.00">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Cost_price')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-cost_price" class="form-control" step="0.01" name="row[cost_price]" type="number" value="0.00">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Price')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-price" class="form-control" step="0.01" name="row[price]" type="number" value="0.00">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Number')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-number" class="form-control" name="row[number]" type="number">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Total')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-total" class="form-control" step="0.01" name="row[total]" type="number" value="0.00">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Coupon_total')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-coupon_total" class="form-control" step="0.01" name="row[coupon_total]" type="number" value="0.00">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Pay_amount')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-pay_amount" class="form-control" step="0.01" name="row[pay_amount]" type="number" value="0.00">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Score')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-score" class="form-control" name="row[score]" type="number" value="0">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Total_gold')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-total_gold" class="form-control" name="row[total_gold]" type="number" value="0">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Gold_money')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-gold_money" class="form-control" step="0.01" name="row[gold_money]" type="number" value="0.00">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Refund_gold')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-refund_gold" class="form-control" name="row[refund_gold]" type="number" value="0">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Refund_score')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-refund_score" class="form-control" name="row[refund_score]" type="number" value="0">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Refund_total')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-refund_total" class="form-control" step="0.01" name="row[refund_total]" type="number" value="0.00">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Return_number_agree')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-return_number_agree" class="form-control" name="row[return_number_agree]" type="number" value="0">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Return_number')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-return_number" class="form-control" name="row[return_number]" type="number" value="0">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Change_number')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-change_number" class="form-control" name="row[change_number]" type="number" value="0">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Refund_mark')}:</label>
+        <div class="col-xs-12 col-sm-8">
+                        
+            <select  id="c-refund_mark" class="form-control selectpicker" name="row[refund_mark]">
+                {foreach name="refundMarkList" item="vo"}
+                    <option value="{$key}" {in name="key" value="0"}selected{/in}>{$vo}</option>
+                {/foreach}
+            </select>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Is_as')}:</label>
+        <div class="col-xs-12 col-sm-8">
+                        
+            <select  id="c-is_as" class="form-control selectpicker" name="row[is_as]">
+                {foreach name="isAsList" item="vo"}
+                    <option value="{$key}" {in name="key" value="0"}selected{/in}>{$vo}</option>
+                {/foreach}
+            </select>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Is_comment')}:</label>
+        <div class="col-xs-12 col-sm-8">
+                        
+            <select  id="c-is_comment" class="form-control selectpicker" name="row[is_comment]">
+                {foreach name="isCommentList" item="vo"}
+                    <option value="{$key}" {in name="key" value="0"}selected{/in}>{$vo}</option>
+                {/foreach}
+            </select>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Pro_reward')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-pro_reward" class="form-control" step="0.01" name="row[pro_reward]" type="number" value="0.00">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Reward_money')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-reward_money" class="form-control" step="0.01" name="row[reward_money]" type="number" value="0.00">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Supply_price')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-supply_price" class="form-control" step="0.01" name="row[supply_price]" type="number">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Supply_amount')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-supply_amount" class="form-control" step="0.01" name="row[supply_amount]" type="number">
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>

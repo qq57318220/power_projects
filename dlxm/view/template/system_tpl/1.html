@@ -1,0 +1,1080 @@
+<link href="/assets/template_file/tpl1/js/swiper/swiper.min.css" type="text/css" rel="stylesheet" />
+<script src="/assets/template_file/tpl1/js/jquery-3.3.1.min.js"></script>
+<script src="/assets/template_file/tpl1/js/swiper/swiper.min.js"></script>
+<script>
+	$(function(){
+	    new function() {
+	        var _self = this;
+	        _self.width = 750; //设置默认最大宽度
+	        _self.fontSize = 80; //默认字体大小
+	        _self.widthProportion = function() {
+	            var p = (document.body && document.body.clientWidth || document.getElementsByTagName("html")[0].offsetWidth) / _self.width;
+	            return p > 1 ? 1 : p < 0.5 ? 0.5 : p;
+	        };
+	        _self.changePage = function() {
+	            document.getElementsByTagName("html")[0].setAttribute("style", "font-size:" + _self.widthProportion() * _self.fontSize + "px !important");
+	        }
+	        _self.changePage();
+	        window.addEventListener('resize', function() {
+	            _self.changePage();
+	        }, false);
+	    };
+	
+	});
+	
+</script>
+<style>
+    img {
+        display: block;
+    }
+
+    html {
+        font-size: 10px!important;
+        padding: 0;
+        margin: 0;
+    }
+
+    body {
+        padding: 0;
+        margin: 0;
+    }
+
+    .swiper {
+        width: 3.73rem;
+        font-size: .06rem;
+        height: 1.95rem;
+        overflow: hidden;
+    }
+
+    .swiper div {
+        width: 15rem;
+        height: 1.95rem;
+        display: flex;
+        position: relative;
+        transition: left 1s;
+    }
+
+    .swiper img {
+        width: 3.75rem;
+        height: 1.95rem;
+        display: block;
+    }
+
+    .swiper .sub{
+        width: 0.45rem;
+        height: 0.45rem;
+        background-color: #fff;
+        /*position: absolute;*/
+        border-radius: 50%;
+        margin-left: 3.3rem;
+        margin-top: -1.95rem;
+        background-image: url("/assets/template_file/public/del.png");
+        background-size: 100% 100%;
+    }
+
+    .swiper .add{
+        width: 0.55rem;
+        height: 0.55rem;
+        background-color: lightskyblue;
+        /*position: absolute;*/
+        border-radius: 50%;
+        margin-top: -1.85rem;
+        margin-left:0.1rem;
+        background-image: url("/assets/template_file/tpl1/add.png");
+        background-size: 100% 100%;
+    }
+
+    .act {
+        border: .02rem dashed #ff0000;
+        box-sizing: border-box;
+    }
+
+    .nav {
+        width: 3.75rem;
+        height: auto;
+        display: flex;
+        margin: 0.1rem 0;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .nav>div {
+        width: 0.93rem;
+        height: 0.8rem;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .nav>div img {
+        width: 0.55rem;
+        height: 0.55rem;
+        display: block;
+        background: lightskyblue;
+        border-radius: 50%;
+    }
+
+    .nav>div text {
+        font-size: 0.06rem;
+    }
+
+    .nav .del{
+        position: absolute;
+        width: 0.2rem;
+        height: 0.2rem;
+        background: #666666;
+        color:#fff;
+        text-align: center;
+        line-height: 0.2rem;
+        font-style: 0.06rem;
+        border-radius: 50%;
+        margin-left: 0.175rem;
+    }
+
+    .top_title {
+        margin-top: 0.2rem;
+        margin-bottom: 0.15rem;
+        width: 3.75rem;
+        text-align: center;
+        height: 0.47rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .top_title .t1 {
+        display: block;
+        font-size: 0.17rem;
+        color: #333;
+        font-weight: bold;
+        position: relative;
+        width: 3.75rem;
+    }
+
+    .top_title .t1:after {
+        content: '';
+        width: 0.25rem;
+        height: 0.01rem;
+        background: #333;
+        position: absolute;
+        top: 50%;
+        right: 32%;
+    }
+
+    .top_title .t1:before {
+        content: '';
+        width: 0.25rem;
+        height: 0.01rem;
+        background: #333;
+        position: absolute;
+        top: 50%;
+        left: 32%;
+    }
+
+    .top_title .t2 {
+        font-size: 0.13rem;
+        color: #333;
+    }
+
+    .kill {
+        width: 3.75rem;
+        height: 1.88rem;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .kill>img {
+        width: 1.4rem;
+        height: 1.88rem;
+        background: lightgreen;
+        border-radius: 0.06rem;
+        margin-left: 0.08rem;
+    }
+
+    .kill>div {
+        width: 2.1rem;
+        height: 1.88rem;
+        margin-right: 0.08rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .kill>div>img {
+        width: 2.11rem;
+        height: 0.75rem;
+        border-radius: 0.06rem;
+        background: lightblue;
+    }
+
+    .kill>div>div {
+        width: 2.11rem;
+        height: 1.08rem;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .kill>div>div img {
+        width: 1.03rem;
+        height: 1.08rem;
+        background: orange;
+        border-radius: 0.06rem;
+    }
+
+    .group {
+        width: 3.75rem;
+        height: auto;
+    }
+
+    .group img {
+        width: 3.6rem;
+        height: 2rem;
+        background: yellowgreen;
+        border-radius: 0.08rem;
+        margin: 0.1rem;
+    }
+
+    .all {
+        width: 3.75rem;
+        height: 2.17rem;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .all>img {
+        width: 1.72rem;
+        height: 2.18rem;
+        background: lightseagreen;
+        border-radius: 0.08rem;
+        margin-left: 0.1rem;
+    }
+
+    .all>div {
+        width: 1.72rem;
+        height: 2.18rem;
+        margin-right: 0.1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .all>div img {
+        width: 1.72rem;
+        height: 1.06rem;
+        background: lightcoral;
+        border-radius: 0.06rem;
+    }
+
+    .potins {
+        width: 3.55rem;
+        height: auto;
+        margin-left: 0.1rem;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .potins>div {
+        width: 1.72rem;
+        height: 2.25rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-bottom: 0.1rem;
+    }
+
+    .potins>div>img {
+        width: 1.72rem;
+        height: 1.8rem;
+        background: goldenrod;
+        border-radius: 0.06rem;
+    }
+
+    .potins>div>div {
+        font-size: 0.08rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .potins>div>i {
+        font-size: 0.07rem;
+        color: red;
+    }
+
+    .contents {
+        width: 3.75rem;
+        height: 6.17rem;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        margin-top: 1.09rem;
+        margin-left: 0.29rem;
+    }
+
+    .contents::-webkit-scrollbar {
+        display: none;
+    }
+
+    .big_content {
+        width: 4.33rem;
+        height: 8.9rem;
+        background-image: url('/assets/template_file/tpl1/model.png');
+        background-size: 100% 100%;
+        overflow: hidden;
+        position: absolute;
+        left: 295px;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .bottom {
+        width: 3.75rem;
+        display: flex;
+        height: 0.5rem;
+        justify-content: space-around;
+        margin-left: 0.29rem;
+		margin-top: .04rem;
+    }
+
+    .bottom>div {
+        font-size: 0.08rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        color: rgb(153, 153, 153);
+    }
+
+    .bottom>div img {
+        width: 0.27rem;
+        height: 0.27rem;
+    }
+
+    text  {
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        user-select: none;
+    }
+
+    .content{
+        height: 100% !important;
+    }
+
+    #main{
+        height:100%;
+    }
+
+    .tab-content{
+        height:100%;
+    }
+
+    /*
+    #content{
+        width: 4.33rem;
+        height: 8.9rem;
+        overflow: hidden;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+     */
+
+    #content{
+        height: 100%;
+    }
+
+    .row{
+        height: 100%;
+    }
+
+
+    .row>div{
+        height: 100%;
+    }
+
+
+
+
+/*    new*/
+    html{
+        font-size: 50px!important;
+    }
+    body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td {
+        margin:0;
+        padding:0;
+    }
+    body {
+        width: 100%;
+        margin: 0 auto;
+        font-family: helvetica;
+    }
+    body * {
+        -webkit-test-size-adjust:100%;
+        -webkit-overflow-scrolling: touch;
+    }
+    a,button,input {
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+    }
+    button,input {
+        -webkit-appearance: none;
+        border-radius: 0;
+        border: none;
+        outline: none;
+    }
+    a {
+        text-decoration: none;
+        color: #2b2a2a;
+    }
+    input {
+        outline: none;
+        vertical-align: middle;
+    }
+    ul {
+        list-style: none;
+    }
+    img {
+        vertical-align: middle;
+        width: 100%;
+    }
+    .clearfix:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+
+
+
+    html, body {
+        position: relative;
+        height: 100%;
+    }
+    body {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    .swiper-container {
+        width: 100%;
+        height: 100%;
+    }
+    .swiper-slide {
+		width: 100%!important;
+        text-align: center;
+        font-size: .18rem;
+        background: #fff;
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+    .swiper-container-horizontal > .swiper-pagination-bullets{
+        bottom: .1rem;
+    }
+    #app{
+        width: 100%;
+        margin: auto;
+		background: #f5f5f5;
+		padding-bottom: .05rem;
+    }
+    .search{
+        width: 100%;
+        background: #fff;
+        position: relative;
+        padding: .1rem 0;
+    }
+    .search img{
+        width:.16rem;
+        height:.16rem;
+        position: absolute;
+        top: .18rem;
+        left: .45rem;
+    }
+    .search input{
+        width:3.15rem;
+        height:.3rem;
+        font-size:.13rem;
+        font-family:PingFang-SC-Regular;
+        font-weight:400;
+        color:#333;
+        line-height: .3rem;
+        background:rgba(245,245,245,1);
+        border-radius:.15rem;
+        margin-left: .3rem;
+        padding-left: .4rem;
+    }
+    .search input::placeholder{
+        font-size:.13rem;
+        font-family:PingFang-SC-Regular;
+        font-weight:400;
+        color:rgba(153,153,153,1);
+        line-height: .3rem;
+    }
+    .banner{
+        width: 100%;
+        /* height: 3.5rem;
+        overflow: hidden; */
+		position: relative;
+    }
+	.banner .add-icon{
+		position: absolute;
+		top: .15rem;
+		left: .1rem;
+		z-index: 99999;
+	}
+	.banner .add-icon img{
+		width: .45rem;
+		height: .45rem;
+	}
+    .banner img{
+        width: 100%;
+    }
+    .banner-nav{
+        width: 100%;
+        background: #fff;
+        display:flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        padding: .2rem 0;
+    }
+    .banner-nav .nav-item{
+		width: .65rem;
+        margin: .12rem .05rem;
+    }
+    .banner-nav .nav-item img{
+        width:.45rem;
+        height:.45rem;
+        border-radius:.14rem;
+		margin: auto;
+    }
+    .banner-nav .nav-item p{
+        font-size:.12rem;
+        font-family:PingFang-SC-Medium;
+        font-weight:500;
+        color:rgba(51,51,51,1);
+        line-height:.2rem;
+		text-align: center;
+    }
+    .index-go{
+        width: 3.5rem;
+        margin:.1rem auto;
+    }
+    .index-go img{
+        width:3.5rem;
+        height:.78rem;
+        border-radius:.09rem;
+
+    }
+    .index-choose{
+        width: 3.5rem;
+        margin: .11rem auto;
+        background: #fff;
+        border-radius:.09rem;
+    }
+    .index-tit{
+        padding: .18rem .11rem;
+        display: flex;
+        justify-content: space-between;
+        background: #fff;
+    }
+    .index-tit .it-left{
+        font-size:.16rem;
+        font-family:PingFang-SC-Bold;
+        font-weight:bold;
+        color:rgba(51,51,51,1);
+        line-height:.2rem;
+    }
+    .index-tit .it-right{
+        font-size:.14rem;
+        font-family:PingFang-SC-Medium;
+        font-weight:500;
+        color:rgba(102,102,102,1);
+        line-height:.2rem;
+    }
+    .index-choose .choose-txt{
+        padding: .13rem;
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+    .index-choose .choose-txt .choose-item{
+        width:1.56rem;
+        height:1.56rem;
+        text-align: center;
+        margin: .02rem;
+    }
+    .index-choose .choose-txt .choose-item p{
+        font-size:.11rem;
+        font-family:PingFang-SC-Medium;
+        font-weight:500;
+        color:rgba(51,51,51,1);
+        line-height:.2rem;
+        margin: .1rem 0;
+    }
+    .index-choose .choose-txt .choose-item img{
+        width:1rem;
+        height:1rem;
+		margin: auto;
+    }
+    .index-choose .choose-txt .ci-back1{
+        background: rgba(243,252,254,0.5);
+        border-radius:.20rem 0rem 0rem 0rem;
+    }
+    .index-choose .choose-txt .ci-back2{
+        background: rgba(252,241,244,0.5);
+        border-radius:0rem .20rem 0rem 0rem;
+    }
+    .index-choose .choose-txt .ci-back3{
+        background: rgba(253,242,238,0.5);
+        border-radius:0rem 0rem 0rem .20rem;
+    }
+    .index-choose .choose-txt .ci-back4{
+        background: rgba(251,246,236,0.5);
+        border-radius:0rem 0rem .20rem 0rem;
+    }
+
+    .index-great{
+		width: 3.5rem;
+		margin: .11rem auto;
+		background: #fff;
+		border-radius:.09rem;
+    }
+    .index-great .great-txt{
+        padding: .05rem;
+    }
+    .index-great .great-txt .great-page{
+        display: flex;
+        justify-content: flex-start;
+    }
+    .index-great .great-txt .great-page .great-item{
+        margin-left: .06rem;
+    }
+    .index-great .great-txt .great-page .great-item .item-back{
+        width:1.1rem;
+        height:1.01rem;
+        background:rgba(244,244,244,1);
+    }
+    .index-great .great-txt .great-page .great-item .item-back img{
+        width: 100%;
+    }
+    .index-great .great-txt .great-page .great-item p{
+        font-size:.1rem;
+        font-family:PingFang-SC-Medium;
+        font-weight:500;
+        color:rgba(51,51,51,1);
+        line-height:.2rem;
+        margin-top: .1rem;
+        padding-bottom: .4rem;
+    }
+	.swiper-pagination-bullet{
+		width: .1rem;
+		height: .1rem;
+	}
+    .index-great .great-txt .great-page .great-item p span{
+        color: #FF3C3C;
+    }
+    .index-great .great-txt .swiper-pagination-bullet-active{
+        background: #FF3C3C;
+    }
+    .index-ping{
+        width: 3.5rem;
+        margin: .11rem auto;
+        background: #fff;
+        border-radius:.09rem;
+    }
+    .index-ping .ping-txt{
+        width: 100%;
+        background: #fff;
+    }
+    .index-ping .ping-txt .ping-go{
+        margin: 0 .15rem;
+    }
+    .index-ping .ping-txt .ping-go img{
+        width:3.2rem;
+        height:1rem;
+        border-radius:.05rem;
+    }
+    .index-ping .ping-txt .ping-list{
+        display: flex;
+        justify-content: space-between;
+        margin: .1rem;
+        padding-bottom: .1rem;
+        border-bottom:.01rem solid rgba(231,231,231,1);
+    }
+    .index-ping .ping-txt .ping-list .list-left{
+
+        position: relative;
+    }
+    .index-ping .ping-txt .ping-list .list-left img{
+        width:1.26rem;
+        /*height:0.94rem;*/
+        border-radius:.02rem;
+    }
+    .index-ping .ping-txt .ping-list .list-left .time{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width:1.26rem;
+        height:.22rem;
+        background:rgba(255,60,60,1);
+        opacity:0.8;
+        border-radius:0rem 0rem .02rem .02rem;
+        font-size:.13rem;
+        font-family:PingFang-SC-Medium;
+        font-weight:500;
+        color:rgba(255,255,255,1);
+        line-height:.25rem;
+        text-align: center;
+    }
+
+    .index-ping .ping-txt .ping-list .list-right{
+        /*margin-left: .10rem;*/
+        margin: auto .1rem;
+        width: 1.63rem;
+    }
+    .index-ping .ping-txt .ping-list .list-right .tit{
+        font-size:.13rem;
+        font-family:PingFang-SC-Medium;
+        font-weight:500;
+        color:rgba(51,51,51,1);
+        line-height:.2rem;
+        text-overflow: -o-ellipsis-lastline;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+    .index-ping .ping-txt .ping-list .list-right .people{
+        width:.42rem;
+        height:.19rem;
+        background:rgba(255,141,141,1);
+        border-radius:.09rem;
+        font-size:.1rem;
+        font-family:PingFang-SC-Medium;
+        font-weight:bold;
+        color:rgba(255,255,255,1);
+        line-height:.18rem;
+        text-align: center;
+        margin: .12rem 0;
+    }
+    .index-ping .ping-txt .ping-list .list-right .tip{
+        display: flex;
+        justify-content: space-between;
+    }
+    .index-ping .ping-txt .ping-list .list-right .tip .price{
+        font-size:.11rem;
+        font-family:PingFang-SC-Medium;
+        font-weight:bold;
+        color:rgba(255,60,60,1);
+        line-height:.16rem;
+    }
+    .index-ping .ping-txt .ping-list .list-right .tip .number{
+        font-size:.12rem;
+        font-family:PingFang-SC-Medium;
+        font-weight:500;
+        color:rgba(153,153,153,1);
+        line-height:.16rem;
+    }
+
+
+    .index-like{
+       width: 3.5rem;
+       margin: .11rem auto;
+       background: #fff;
+       border-radius:.09rem;
+    }
+    .index-like .like-txt{
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+    .index-like .like-txt .like-item{
+        width:1.61rem;
+        height:2.53rem;
+        background:rgba(255,255,255,1);
+        border-radius:.04rem;
+        margin: .05rem;
+    }
+    .index-like .like-txt .like-item img{
+        width:1.61rem;
+        height:1.75rem;
+        border-radius:.04rem .04rem 0rem 0rem;
+    }
+    .index-like .like-txt .like-item .like-tit{
+        font-size:.13rem;
+        font-family:PingFang-SC-Medium;
+        font-weight:500;
+        color:rgba(51,51,51,1);
+        line-height:.18rem;
+        margin: .10rem .04rem;
+        text-overflow: -o-ellipsis-lastline;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+    .index-like .like-txt .like-item .like-price{
+        font-size:.13rem;
+        font-family:PingFang-SC-Regular;
+        font-weight:bold;
+        color:rgba(255,60,60,1);
+        line-height:.2rem;
+        margin: .05rem;
+    }
+    .index-like .like-txt .like-item .like-price span{
+        font-size:.11rem;
+        font-family:PingFang-SC-Regular;
+        font-weight:400;
+        text-decoration:line-through;
+        color:rgba(204,204,204,1);
+        line-height:.2rem;
+    }
+	.isme{
+		width: 100%;
+		height: 100%;
+		border: 1px dashed #FE0505;
+	}
+
+</style>
+
+<div class="big_content">
+    <div class="contents">
+        <div id="app">
+            <!-- 搜索框 -->
+            <section class="search">
+                <form onsubmit="return false" action="##" method="post">
+                    <img src="/assets/template_file/tpl1/img/search.png" alt="" />
+                    <input type="text" placeholder="请输入您要查找的商品" name="search" />
+                </form>
+            </section>
+            <!-- banner -->
+            <section class="banner">
+				<div class="add-icon">
+					<img src="/assets/template_file/tpl1/add.png" class="modifyDiv" alt="添加轮播图" onclick="show_add_con({$info.id},1,2,'750 * 350')"/>
+				</div>
+                <!-- Swiper -->
+                <div class="swiper-container sc1">
+                    <div class="swiper-wrapper">
+                        {empty name="$cons[1]"}
+                            <div class="swiper-slide"><img  style="background: #FFFFCC;height: 140px"/> </div>
+                            <div class="swiper-slide"><img  style="background: #0e6f5c;height: 140px"/> </div>
+                        {else/}
+                            {foreach $cons[1] as $k=>$v}
+                                <div class="swiper-slide modifyDiv"><img alt="{$v.title}" src="{$v.image}" onclick="show_edit_con({$v.id})"/> </div>
+                            {/foreach}
+                        {/empty}
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
+                </div>
+            </section>
+            <!-- banner导航 -->
+            <section class="banner-nav">
+                {notempty name="$cons[2]"}
+                    {foreach $cons[2] as $k=>$v}
+                        <div class="nav-item modifyDiv">
+                            <img src="{$v.image}" alt="{$v.title}" onclick="show_edit_con({$v.id})"/>
+                            <p>{$v.title}</p>
+                        </div>
+                    {/foreach}
+                {/notempty}
+
+                <div class="nav-item modifyDiv" onclick="show_add_con({$info.id},2,2,'200 * 200')">
+                    <img src="/assets/template_file/tpl1/add.png" alt="" />
+                    <p>添加商品</p>
+                </div>
+            </section>
+            <!-- 进入 -->
+            <section class="index-go">
+                <img src="{$cons[3][0]['image']}" onclick="show_edit_con({$cons[3][0]['id']})" class="modifyDiv"/>
+            </section>
+            <!-- 每日精选 -->
+            <section class="index-choose">
+                <div class="index-tit modifyDiv" onclick="show_edit_con({$cons[4][0]['id']})">
+                    <div class="it-left">{$cons[4][0]['title']}</div>
+                    <div class="it-right">更多></div>
+                </div>
+                <div class="choose-txt">
+
+                    {notempty name="$cons[5]"}
+                        {foreach $cons[5] as $k=>$v}
+                        <div class="choose-item ci-back1  modifyDiv" onclick="show_edit_con({$v.id})">
+                            <p>{$v.title}</p>
+                            <img src="{$v.image}" alt="{$v.title}" />
+                        </div>
+                        {/foreach}
+                    {/notempty}
+
+                    <div class="choose-item ci-back4  modifyDiv">
+						<p style="margin-top: .2rem;">添加内容</p>
+                        <img src="/assets/template_file/tpl1/add.png" onclick="show_add_con({$info.id},5,2,'220 * 220')" />
+                    </div>
+                </div>
+
+            </section>
+            <!-- 每日好货 -->
+            <section class="index-great">
+                <div class="index-tit modifyDiv" onclick="show_edit_con({$cons[6][0]['id']})">
+                    <div class="it-left">{$cons[6][0]['title']}</div>
+                    <div class="it-right">更多></div>
+                </div>
+                <div class="great-txt ">
+                    <!-- Swiper -->
+                    <div class="swiper-container sc2">
+                        <div class="swiper-wrapper">
+
+                            <!--  展示页-->
+                            {notempty name="$cons[6][0]['product_list']"}
+                            {for start="3" end="ceil(count($cons[6][0]['product_list'])/3)*3" comparison="elt" step="3"  }
+                            <div class="swiper-slide">
+                                <div class="great-page">
+
+                                    {foreach $cons[6][0]['product_list'] as $k=>$p }
+                                    {if condition="$k lt $i && $k egt ($i-3)"}
+                                    <div class="great-item">
+                                        <div class="item-back">
+                                            <img src="{$p['image']}" alt="" />
+                                        </div>
+                                        <p>{$p['name']} <span>￥{$p['min_price']}</span> </p>
+                                    </div>
+                                    {/if}
+                                    {/foreach}
+
+
+                                </div>
+                            </div>
+                            {/for}
+                            {/notempty}
+                            <!--  展示页-->
+
+
+
+                        </div>
+                        <!-- Add Pagination -->
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </section>
+            <!-- 拼团 -->
+            {notempty name="groups"}
+            <section class="index-ping">
+                <div class="index-tit modifyDiv" onclick="show_edit_con({$cons[7][0]['id']})">
+                    <div class="it-left" >{$cons[7][0]['title']}</div>
+                    <div class="it-right">更多></div>
+                </div>
+                <div class="ping-txt ">
+                    <div class="ping-go">
+                        <img src="{$cons[7][1]['image']}" alt="" class="modifyDiv" onclick="show_edit_con({$cons[7][1]['id']})"/>
+                    </div>
+
+                    <div>
+
+                        {foreach $groups as $v}
+                        <div class="ping-list ">
+                            <div class="list-left">
+                                <img src="{$v.image}" alt=""/>
+                                <div class="time"> 倒计时</div>
+
+                            </div>
+                            <div class="list-right">
+                                <p class="tit">{$v.name}</p>
+                                <div class="people">{$v.group_size}人团 </div>
+                                <div class="tip">
+                                    <div class="price">￥{$v.min_price}</div>
+                                    <div class="number">已拼xxx件</div>
+                                </div>
+                            </div>
+                        </div>
+                        {/foreach}
+
+                    </div>
+                </div>
+            </section>
+            {/notempty}
+            <!-- 猜你喜欢 -->
+            <section class="index-like">
+                <div class="index-tit modifyDiv" onclick="show_edit_con({$cons[8][0]['id']})">
+                    <div class="it-left">{$cons[8][0]['title']}</div>
+                    <div class="it-right">更多></div>
+                </div>
+                <div class="like-txt">
+                    {foreach $cons[8][0]['product_list'] as $k=>$p }
+                    <div class="like-item">
+                        <img src="{$p.image}" alt=""/>
+                        <p class="like-tit">{$p.name} </p>
+                        <p class="like-price">￥{$p.min_price} <span>￥{$p.line_price}</span></p>
+                    </div>
+                    {/foreach}
+                </div>
+            </section>
+        </div>
+
+    </div>
+    <div class="bottom">
+        <div>
+            <img src="/assets/template_file/tpl1/icon1_d.png" alt="">
+            <div style="color: #FE0505">首页</div>
+        </div>
+        <div>
+            <img src="/assets/template_file/tpl1/icon2.png" alt="">
+            <div>分类</div>
+        </div>
+		<div>
+		    <img src="/assets/template_file/tpl1/icon3.png" alt="">
+		    <div>消息</div>
+		</div>
+        <div>
+            <img src="/assets/template_file/tpl1/icon4.png" alt="">
+            <div>购物车</div>
+        </div>
+        <div>
+            <img src="/assets/template_file/tpl1/icon5.png" alt="">
+            <div>我的</div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+
+    var swiper = new Swiper('.sc1', {
+        pagination: {
+            el: '.swiper-pagination',
+        },
+		width:300,
+        autoplay: true,//可选选项，自动滑动
+    });
+    var swiper = new Swiper('.sc2', {
+        pagination: {
+            el: '.swiper-pagination',
+        },
+        width:272,
+        autoplay: true,//可选选项，自动滑动
+    });
+	$(function(){
+		$('.modifyDiv').click(function(){
+			$('.isme').removeClass('isme');
+			$(this).addClass('isme');
+		})
+	})
+	
+</script>
+
+
